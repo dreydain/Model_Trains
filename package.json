@@ -1,0 +1,26 @@
+{
+  "name": "model_trains",
+  "version": "1.0.0",
+  "description": "TJ model train business manager",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dreydain/Model_Trains.git"
+  },
+  "author": "April Hughes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dreydain/Model_Trains/issues"
+  },
+  "homepage": "https://github.com/dreydain/Model_Trains#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
