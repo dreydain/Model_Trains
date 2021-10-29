@@ -7,9 +7,11 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Container>
-        <h1>Welcome to TJ Model Trains</h1>
-      </Container>
+      <main className='py-3'>
+        <Container>
+          <h1>Welcome to TJ Model Trains</h1>
+        </Container>
+      </main>
       <Footer />
     </div>
   );
