@@ -31,11 +31,6 @@ const userSchema = mongoose.Schema({
 
     wage: {type: Number},
 
-    startDate: {
-        type: Date,
-        required: true
-    },
-
     endDate: {type: Date},
 
 }, {timeStamps: true})

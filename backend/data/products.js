@@ -1,6 +1,6 @@
 const products = [
   {
-    prodNum: 'tjm1001',
+    number: 'tjm1001',
     name: 'Christmas Express',
     image: '/images/christmas_express.jpg',
     description:
@@ -11,7 +11,7 @@ const products = [
     countInStock: 10,
   },
   {
-    prodNum: 'tjm1002',
+    number: 'tjm1002',
     name: 'Steam Engine',
     image: '/images/steam_engine.jpg',
     description:
@@ -22,7 +22,7 @@ const products = [
     countInStock: 7,
   },
   {
-    prodNum: 'tfy1001',
+    number: 'tfy1001',
     name: 'Red Engine',
     image: '/images/red_engine.jpg',
     description:
@@ -33,7 +33,7 @@ const products = [
     countInStock: 5,
   },
   {
-    prodNum: 'tfy2001',
+    number: 'tfy2001',
     name: 'Train Station',
     image: '/images/train_station.jpg',
     description:
@@ -44,7 +44,7 @@ const products = [
     countInStock: 11,
   },
   {
-    prodNum: 'tw1001',
+    number: 'tw1001',
     name: 'Yellow Caboose',
     image: '/images/yellow_caboose.jpg',
     description:
@@ -55,7 +55,7 @@ const products = [
     countInStock: 7,
   },
   {
-    prodNum: 'tw1002',
+    number: 'tw1002',
     name: 'Yellow Engine',
     image: '/images/yellow_engine.jpg',
     description:
