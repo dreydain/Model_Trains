@@ -1,12 +1,18 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
-mongoose.connect("mongodb://localhost/" + process.env.DB_NAME, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-    .then(() => {
-        console.log('Succesfully connected to the database')
-    })
-    .catch((err) => {
-        console.log("Something went wrong when connecting to the database", err)
-    });
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect("mongodb://localhost/" + process.env.DB_NAME, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+        })
+
+        console.log(`MongoDB Connected: ${conn.connection.host}`)
+    
+    } catch (error) {
+        console.error(`Error ${error.message}`)
+        process.exit(1)
+    }
+}
+
+export default connectDB
