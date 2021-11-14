@@ -4,9 +4,11 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {
     productListReducer,
 } from './reducers/productReducer'
+import {userListReducer} from './reducers/userReducers'
 
 const reducer = combineReducers({
     productList: productListReducer,
+    userList: userListReducer,
 })
 
 const initialState = {}

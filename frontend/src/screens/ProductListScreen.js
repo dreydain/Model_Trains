@@ -2,12 +2,13 @@ import React, {useEffect} from 'react'
 import {Button, Table, Row, Col} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {listProducts} from '../actions/productActions'
+import {Link} from 'react-router-dom'
 
 const ProductListScreen = () => {
     const dispatch = useDispatch()
 
     const productList = useSelector((state) => state.productList)
-    const {loading, error, products} = productList
+    const {products} = productList
 
     useEffect(() => {
         dispatch(listProducts())
@@ -18,7 +19,7 @@ const ProductListScreen = () => {
         <>
             <Row>
                 <Col>
-                    <Button className='my-2 float-end'>Add a Product</Button>
+                    <Button>Add a Product</Button>
                 </Col>
             </Row>
             
@@ -36,12 +37,14 @@ const ProductListScreen = () => {
                 <tbody>
                     {products.map((product) => (
                         <tr key={product._id}>
-                            <td>{product.number}</td>
+                            <td><Link to={`/products/${product._id}`}>{product.number}</Link></td>
                             <td>{product.name}</td>
                             <td>{product.stock}</td>
                             <td>{product.brand}</td>
                             <td>{product.category}</td>
-                            <td>Update | Delete</td>
+                            <td>
+                                <Link to={`/products/${product._id}/edit`}>Update</Link> | <Button>Delete</Button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

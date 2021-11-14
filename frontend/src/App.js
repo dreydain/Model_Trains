@@ -3,8 +3,9 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import {Container} from 'react-bootstrap'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import WorkOrderListScreen from './screens/WorkOrderListScreen';
+import WorkOrderListScreen from './screens/WorkOrderListScreen'
 import ProductListScreen from './screens/ProductListScreen'
+import UserListScreen from './screens/UserListScreen'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path='/workorderlist' element={<WorkOrderListScreen/>}/>
             <Route path='/productlist' element={<ProductListScreen/>}/>
+            <Route path='/userlist' element={<UserListScreen/>}/>
           </Routes>
         </Container>
       </main>
