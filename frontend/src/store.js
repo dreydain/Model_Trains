@@ -5,10 +5,12 @@ import {
     productListReducer,
 } from './reducers/productReducer'
 import {userListReducer} from './reducers/userReducers'
+import { workorderListReducer } from './reducers/workorderReducers'
 
 const reducer = combineReducers({
     productList: productListReducer,
     userList: userListReducer,
+    workorderList: workorderListReducer,
 })
 
 const initialState = {}

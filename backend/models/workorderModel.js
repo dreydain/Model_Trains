@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const workOrderSchema = mongoose.Schema({
+const workorderSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -55,6 +55,6 @@ const workOrderSchema = mongoose.Schema({
 
 }, {timeStamps: true})
 
-const WorkOrder = mongoose.model('WorkOrder', workOrderSchema)
+const Workorder = mongoose.model('Workorder', workorderSchema)
 
-export default WorkOrder
+export default Workorder

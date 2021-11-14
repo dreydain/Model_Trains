@@ -1,8 +1,20 @@
 import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {Button, Table, Row, Col} from 'react-bootstrap'
+import {listWorkorders} from '../actions/workorderActions'
+import {Link} from 'react-router-dom'
 
 
 const WorkOrderListScreen = () => {
+
+    const dispatch = useDispatch()
+
+    const workorderList = useSelector((state) => state.workorderList)
+    const {workorders} = workorderList
+
+    useEffect(() => {
+        dispatch(listWorkorders())
+    }, [dispatch])
 
 
     return (
@@ -25,14 +37,17 @@ const WorkOrderListScreen = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>workorder #</td>
-                        <td>50</td>
-                        <td>10/16/21</td>
-                        <td>11/16/21</td>
-                        <td>Ship Date</td>
-                        <td>update</td>
-                    </tr>
+                    {workorders.map((workorder) => (
+                        <tr key={workorder._id}>
+                            <td>{workorder.number}</td>
+                            <td>{workorder.orderItems.quantity}</td>
+                            <td>{workorder.orderDate}</td>
+                            <td>{workorder.dueDate}</td>
+                            <td>{workorder.shipped}</td>
+                            <td><Link to={`/workorders/${workorder._id}/update`}>Update</Link></td>
+                        </tr>
+                    ))}
+                    
                 </tbody>
             </Table>
             
