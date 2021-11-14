@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import dotenv from 'dotenv'
 //import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 import connectDB from './config/mongoose.config.js'
@@ -8,6 +9,7 @@ import userRoutes from './routes/userRoutes.js'
 dotenv.config()
 connectDB()
 const app = express()
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('API is running...')
