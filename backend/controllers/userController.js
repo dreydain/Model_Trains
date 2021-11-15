@@ -33,10 +33,32 @@ const getOneUser = (req, res) => {
     
 }
 
+const createUser = (req, res) => {
+    const user = new User(req.body)
+    console.log(user);
+    user.save()
+        .then((user) => {
+            console.log("successfully registered");
+            res.json({ message: "Successfully Registered!", user: user })
+        })
+        .catch((err) => {
+            console.log("register not successful", err);
+            res.json(err)
+        })
+}
 
-
+const updateUser = (req,res) => {
+    User.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    })
+        .then(updatedUser => res.json(updatedUser))
+        .catch(err => res.json(err))
+}
 
 export {
     getAllUsers,
     getOneUser,
+    createUser,
+    updateUser,
 }

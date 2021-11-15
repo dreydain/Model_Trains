@@ -33,10 +33,30 @@ const getOneProduct = (req, res) => {
     
 }
 
+const updateProduct = (req, res) => {
+    console.log("inside update");
+    console.log(req.params.id);
+    console.log(req.body);
+    //res.json("inside update");
+    Product.findByIdAndUpdate(req.params.id, req.body, {
+        new:true, 
+        runValidators:true
+    })
+        .then((updatedProduct) => {
+            console.log(updatedProduct);
+            res.json(updatedProduct);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
+        });
+}
+
 
 
 
 export {
     getAllProducts,
     getOneProduct,
+    updateProduct
 }
