@@ -19,7 +19,10 @@ const UserListScreen = () => {
         <>
             <Row>
                 <Col>
-                    <Button className='my-2 float-end'>Add New Staff</Button>
+                    <Button 
+                        className='my-2 float-end'
+                        onClick={<Link to='users/new'></Link>}
+                    >Add New Staff</Button>
                 </Col>
             </Row>
             

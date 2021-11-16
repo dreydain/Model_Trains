@@ -2,7 +2,7 @@
   "name": "model_trains",
   "version": "1.0.0",
   "description": "TJ model train business manager",
-  "main": "server.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -33,6 +33,9 @@ const getOneProduct = (req, res) => {
     
 }
 
+//@desc Update Product
+//@route Put /api/products/:id
+//@access Public
 const updateProduct = (req, res) => {
     console.log("inside update");
     console.log(req.params.id);

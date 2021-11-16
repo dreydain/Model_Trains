@@ -33,6 +33,9 @@ const getOneUser = (req, res) => {
     
 }
 
+//@desc Create User
+//@route Post /api/user/new
+//@access Public
 const createUser = (req, res) => {
     const user = new User(req.body)
     console.log(user);
@@ -47,6 +50,9 @@ const createUser = (req, res) => {
         })
 }
 
+//@desc Update User
+//@route Put /api/user/:id
+//@access Public
 const updateUser = (req,res) => {
     User.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
