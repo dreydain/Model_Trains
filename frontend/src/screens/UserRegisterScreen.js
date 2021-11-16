@@ -1,19 +1,57 @@
-import React from 'react'
-import {Form, Button, Row, Col} from 'react-bootstrap'
+import React, {useState} from 'react'
+import {Form, Button} from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
+import {create} from '../actions/userActions'
+import {useDispatch, useSelector} from 'react-redux'
+import Message from '../components/Message'
 
-const UserRegisterScreen = () => {
+
+const UserRegisterScreen = ({}) => {
+    const [firstName, setFirstName] = useState('')
+    const [email, setEmail] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [message, setMessage] = useState('')
+    
+    const dispatch = useDispatch()
+
+    const userCreate = useSelector((state) => state.userCreate)
+    const {userInfo} = userCreate
+    
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        if(password !== confirmPassword) {
+            setMessage('Passwords do not match')
+        } else {
+            dispatch(create(firstName, lastName, email, password))
+        }
+        
+    }
+
     return (
         <FormContainer>
             <h1>Sign Up</h1>
-            <Form onSubmit={}>
-                <Form.Group controlId='name'>
-                    <Form.Label>Name</Form.Label>
+            {message && <Message variant='danger'>{message}</Message>}
+            <Form onSubmit={submitHandler}>
+                <Form.Group controlId='firstName'>
+                    <Form.Label>First Name</Form.Label>
                     <Form.Control 
-                        type='name' 
-                        placeholder='Enter Name' 
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        type='firstName' 
+                        placeholder='Enter First Name' 
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                    ></Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId='lastName'>
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control 
+                        type='lastName' 
+                        placeholder='Enter Last Name' 
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
 
@@ -50,17 +88,6 @@ const UserRegisterScreen = () => {
                     Register
                 </Button>
             </Form>
-
-            <Row className='py-3'>
-                <Col>
-                    Have an Account?{' '} 
-                    <Link to={redirect 
-                        ? `/login?redirect=${redirect}` 
-                        : '/login'}>
-                            Login
-                    </Link>
-                </Col>
-            </Row>
         </FormContainer>
     )
 }

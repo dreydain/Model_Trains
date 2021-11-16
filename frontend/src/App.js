@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import WorkOrderListScreen from './screens/WorkOrderListScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import UserListScreen from './screens/UserListScreen'
+import UserRegisterScreen from './screens/UserRegisterScreen'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path='/workorderlist' element={<WorkOrderListScreen/>}/>
             <Route path='/productlist' element={<ProductListScreen/>}/>
             <Route path='/userlist' element={<UserListScreen/>}/>
+            <Route path='/users/new' element={<UserRegisterScreen/>}/>
           </Routes>
         </Container>
       </main>

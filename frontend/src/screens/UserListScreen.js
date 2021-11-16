@@ -20,9 +20,10 @@ const UserListScreen = () => {
             <Row>
                 <Col>
                     <Button 
-                        className='my-2 float-end'
-                        onClick={<Link to='users/new'></Link>}
-                    >Add New Staff</Button>
+                    className='my-2 float-end'
+                    href='/users/new'>
+                        Add New Staff
+                    </Button>
                 </Col>
             </Row>
             
