@@ -4,12 +4,13 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {
     productListReducer,
 } from './reducers/productReducer'
-import {userListReducer, userCreateReducer} from './reducers/userReducers'
+import {userListReducer, userCreateReducer, userDetailsReducer} from './reducers/userReducers'
 import { workorderListReducer } from './reducers/workorderReducers'
 
 const reducer = combineReducers({
     productList: productListReducer,
     userList: userListReducer,
+    userDetails: userDetailsReducer,
     userCreate: userCreateReducer,
     workorderList: workorderListReducer,
 })
