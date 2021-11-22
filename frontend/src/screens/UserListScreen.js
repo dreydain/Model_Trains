@@ -41,7 +41,7 @@ const UserListScreen = () => {
                 <tbody>
                     {users.map((user) => (
                         <tr key={user._id}>
-                            <td>{user.firstName}</td>
+                            <td><Link to={`/users/${user._id}`}>{user.firstName}</Link></td>
                             <td>{user.lastName}</td>
                             <td>{user.jobTitle}</td>
                             <td>Employment Dates</td>

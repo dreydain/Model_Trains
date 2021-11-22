@@ -34,7 +34,7 @@ export const userListReducer = (state = {users: []}, action) => {
 export const userDetailsReducer = (state = {user: {}}, action) => {
     switch(action.type) {
         case USER_DETAILS_REQUEST:
-            return {...state, loading: true}
+            return {loading: true, ...state}
         case USER_DETAILS_SUCCESS:
             return {loading: false, user: action.payload}
         case USER_DETAILS_FAIL:

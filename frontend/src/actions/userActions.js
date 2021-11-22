@@ -40,27 +40,22 @@ export const listUsers = () => async (dispatch) => {
 
 export const getUserDetails = (id) => async (dispatch) => {
     try {
-        dispatch({
-            type: USER_DETAILS_REQUEST
-        })
+        dispatch({type: USER_DETAILS_REQUEST})
 
         const {data} = await axios.get(`/api/users/${id}`)
-
+        
         dispatch({
             type: USER_DETAILS_SUCCESS,
             payload: data
-        })
-
+        })    
     } catch (error) {
-        const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
-            dispatch({
+        dispatch({
             type: USER_DETAILS_FAIL,
-            payload: message,
-            })
-        }
+            payload: error.response && error.response.data.message 
+            ? error.response.data.message 
+            : error.message,
+        })
+    }
 }
 
 export const create = (firstName, lastName, email, password) => async (dispatch) => {

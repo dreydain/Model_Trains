@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Message from '../components/Message'
 
 
-const UserRegisterScreen = ({}) => {
+const UserRegisterScreen = () => {
     const [firstName, setFirstName] = useState('')
     const [email, setEmail] = useState('')
     const [lastName, setLastName] = useState('')
@@ -27,6 +27,7 @@ const UserRegisterScreen = ({}) => {
         } else {
             dispatch(create(firstName, lastName, email, password))
         }
+        console.log(userInfo)
         
     }
 
