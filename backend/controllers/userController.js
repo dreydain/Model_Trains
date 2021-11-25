@@ -1,4 +1,5 @@
 import User from '../models/userModel.js'
+import asyncHandler from 'express-async-handler'
 
 //@desc Fetch all users
 //@route Get /api/users
@@ -50,45 +51,55 @@ const createUser = (req, res) => {
         })
 }
 
+//@desc Update user profile
+//@route  PUT /api/users/profile
+//@access Private
+const updateUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id)
+
+    if(user) {
+        user.firstName = req.body.firstName || user.firstName
+        user.lastName = req.body.lastName || user.lastName
+        user.email = req.body.email || user.email
+        user.isAdmin = req.body.isAdmin || user.isAdmin
+        user.phone = req.body.phone || user.phone
+        user.address = req.body.address || user.address
+        user.jobTitle = req.body.jobTitle || user.jobTitle
+        user.wage = req.body.wage || user.wage
+        user.endDate = req.body.endDate || user.endDate
+        if(req.body.password) {
+            user.password = req.body.password
+        }
+
+        const updatedUser = await user.save()
+
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.firstName,
+            lastName: updatedUser.lastName,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            phone: updatedUser.phone,
+            address: updatedUser.address,
+            jobTitle: updatedUser.jobTitle,
+            wage: updatedUser.wage,
+            endDate: updatedUser.endDate
+        })
+
+    }
+})
+
+// //@desc Update User
+// //@route Put /api/user/:id
+// //@access Public
 // const updateUser = (req, res) => {
-//     const user = User.findById(req.params.id)
-
-//     if(user) {
-//         user.email = req.body.email || user.email
-//         if(req.body.password) {
-//             user.password = req.body.password
-//         }
-
-//         user.save()
-
-//         res.json({
-//             _id: updatedUser._id,
-//             firstName: updatedUser.firstName,
-//             lastName: updatedUser.lastName,
-//             email: updatedUser.email,
-//             isAdmin: updatedUser.isAdmin,
-//             phone: updatedUser.phone,
-//             address: updatedUser.address,
-//             jobTitle: updatedUser.jobTitle,
-//             wage: updatedUser.wage,
-//             endDate: updatedUser.endDate
-            
-//         })
-
-//     }
+//     User.findByIdAndUpdate(req.params.id, req.body, {
+//         new: true,
+//         runValidators: true
+//     })
+//         .then(updatedUser => res.json(updatedUser))
+//         .catch(err => res.json(err))
 // }
-
-//@desc Update User
-//@route Put /api/user/:id
-//@access Public
-const updateUser = (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true
-    })
-        .then(updatedUser => res.json(updatedUser))
-        .catch(err => res.json(err))
-}
 
 export {
     getAllUsers,

@@ -95,9 +95,8 @@ export const updateUser = (user) => async (dispatch) => {
             type: USER_UPDATE_REQUEST
         })
 
-        const {data} = axios.put(`/api/users/${user._id}/edit`, user)
-        console.log('this is your user object'+ user)
-        console.log('this is your data object' + data)
+        const {data} = axios.put(`/api/users/${user.id}/edit`, user)
+        
 
         dispatch({
             type: USER_UPDATE_SUCCESS,

@@ -33,7 +33,7 @@ const UserDetailsScreen = () => {
                             Email: {user.email}
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            Phone: {user.pone}
+                            Phone: {user.phone}
                         </ListGroup.Item>
                         <ListGroup.Item>
                             Address: {user.address}
