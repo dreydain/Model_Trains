@@ -1,18 +1,30 @@
 import React, {useEffect} from 'react'
 import {Button, Table, Row, Col} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
-import {listProducts} from '../actions/productActions'
-import {Link} from 'react-router-dom'
+import {listProducts, deleteProduct} from '../actions/productActions'
+import {Link, useNavigate} from 'react-router-dom'
 
 const ProductListScreen = () => {
     const dispatch = useDispatch()
+    let navigate = useNavigate()
 
     const productList = useSelector((state) => state.productList)
     const {products} = productList
 
+    const productDelete = useSelector((state) => state.productDelete)
+    const {success} = productDelete
+
     useEffect(() => {
         dispatch(listProducts())
-    }, [dispatch])
+    }, [dispatch, success])
+
+    const deleteHandler = (id) => {
+        dispatch(deleteProduct(id))
+        if(window.confirm('Are you sure?')) {
+            dispatch(deleteProduct(id))
+            navigate('/productlist')
+        }
+    }
 
     
     return (
@@ -43,7 +55,7 @@ const ProductListScreen = () => {
                             <td>{product.brand}</td>
                             <td>{product.category}</td>
                             <td>
-                                <Link to={`/products/${product._id}/edit`}>Update</Link> | <Button>Delete</Button>
+                                <Link to={`/products/${product._id}/edit`}>Update</Link> | <Button variant='danger' onClick={() => deleteHandler(product._id)}>Delete</Button>
                             </td>
                         </tr>
                     ))}

@@ -34,7 +34,7 @@ const ProductDetailsScreen = () => {
     return (
         <>
             <Row>
-                <Col><Link className='btn btn-light my-3' to='/productlist'>Go Back</Link></Col>
+                <Col><Button className='my-3' variant='light' href={'/productlist'}>Go Back</Button></Col>
                 <Col>
                     <Button className='my-3 float-end' variant='danger' onClick={() => deleteHandler(product._id)}>Delete</Button>
                     <Button className='m-3 float-end' href={`/products/${product._id}/edit`}>Update</Button>
