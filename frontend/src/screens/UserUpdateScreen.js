@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Form, Button} from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 import {getUserDetails, updateUser, } from '../actions/userActions'
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import {USER_UPDATE_RESET} from '../constants/userConstants'
 
 
@@ -17,6 +17,7 @@ const UserUpdateScreen = () => {
     const [jobTitle, setJobTitle] = useState('')
     const [wage, setWage] = useState('')
     
+    let navigate = useNavigate()
     const dispatch = useDispatch()
     const {id} = useParams();
 
@@ -49,6 +50,7 @@ const UserUpdateScreen = () => {
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(updateUser({id: user._id, firstName, lastName, email, phone, address, jobTitle, wage}))
+        navigate('/userlist')
     }
 
     
