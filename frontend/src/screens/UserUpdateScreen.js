@@ -90,7 +90,7 @@ const UserUpdateScreen = () => {
                 <Form.Group controlId='phone'>
                     <Form.Label>Phone</Form.Label>
                     <Form.Control 
-                        type='number' 
+                        type='text' 
                         placeholder='Enter Phone' 
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}

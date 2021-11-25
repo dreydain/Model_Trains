@@ -89,21 +89,26 @@ const updateUser = asyncHandler(async (req, res) => {
     }
 })
 
-// //@desc Update User
-// //@route Put /api/user/:id
-// //@access Public
-// const updateUser = (req, res) => {
-//     User.findByIdAndUpdate(req.params.id, req.body, {
-//         new: true,
-//         runValidators: true
-//     })
-//         .then(updatedUser => res.json(updatedUser))
-//         .catch(err => res.json(err))
-// }
+//@desc Delete User
+//@route  Delete /api/users/:id
+//@access Private/admin
+const deleteUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id)
+    
+    if(user) {
+        await user.remove()
+        res.json({message:'User removed' })
+    } else {
+        res.status(404)
+        throw new Error('User not found')
+    }
+
+})
 
 export {
     getAllUsers,
     getOneUser,
     createUser,
     updateUser,
+    deleteUser,
 }
