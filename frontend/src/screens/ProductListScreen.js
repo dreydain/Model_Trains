@@ -19,7 +19,7 @@ const ProductListScreen = () => {
         <>
             <Row>
                 <Col>
-                    <Button>Add a Product</Button>
+                    <Button className='my-3'>Add a Product</Button>
                 </Col>
             </Row>
             
