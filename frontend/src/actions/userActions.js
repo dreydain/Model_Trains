@@ -1,3 +1,4 @@
+
 import axios from 'axios'
 import { 
     USER_LIST_REQUEST,
@@ -94,11 +95,13 @@ export const updateUser = (user) => async (dispatch) => {
             type: USER_UPDATE_REQUEST
         })
 
-
-        await axios.put(`/api/users/${user._id}`, user)
+        const {data} = axios.put(`/api/users/${user._id}/edit`, user)
+        console.log('this is your user object'+ user)
+        console.log('this is your data object' + data)
 
         dispatch({
-            type: USER_UPDATE_SUCCESS
+            type: USER_UPDATE_SUCCESS,
+            payload: data
         })
 
     } catch (error) {

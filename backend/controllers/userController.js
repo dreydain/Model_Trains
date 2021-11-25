@@ -50,10 +50,38 @@ const createUser = (req, res) => {
         })
 }
 
+// const updateUser = (req, res) => {
+//     const user = User.findById(req.params.id)
+
+//     if(user) {
+//         user.email = req.body.email || user.email
+//         if(req.body.password) {
+//             user.password = req.body.password
+//         }
+
+//         user.save()
+
+//         res.json({
+//             _id: updatedUser._id,
+//             firstName: updatedUser.firstName,
+//             lastName: updatedUser.lastName,
+//             email: updatedUser.email,
+//             isAdmin: updatedUser.isAdmin,
+//             phone: updatedUser.phone,
+//             address: updatedUser.address,
+//             jobTitle: updatedUser.jobTitle,
+//             wage: updatedUser.wage,
+//             endDate: updatedUser.endDate
+            
+//         })
+
+//     }
+// }
+
 //@desc Update User
 //@route Put /api/user/:id
 //@access Public
-const updateUser = (req,res) => {
+const updateUser = (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true

@@ -10,7 +10,8 @@ import {
 //get all Users
 router.route('/').get(getAllUsers)
  //get one User   
-router.route('/:id').get(getOneUser).put(updateUser)
+router.route('/:id').get(getOneUser)
+router.route('/:id/edit').put(updateUser)
 // Create User
 router.route('/new').post(createUser)
 

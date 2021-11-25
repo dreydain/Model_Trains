@@ -14,7 +14,7 @@ const UserDetailsScreen = () => {
 
     useEffect(() => {
         dispatch(getUserDetails(id))
-    }, [dispatch, user, id])
+    }, [dispatch, id])
 
     return (
         <>
@@ -47,8 +47,13 @@ const UserDetailsScreen = () => {
                     </ListGroup>
                 </Col>
                 <Row>
-                <Col>
-                        <Button className='my-5'>Update User</Button>
+                    <Col>
+                        <Button 
+                            className='my-5'
+                            href={`/users/${user._id}/edit`}
+                            >
+                            Update User
+                        </Button>
                     </Col>
                     <Col>
                         <Button className='my-5 float-end' variant='danger'>Terminate</Button>
