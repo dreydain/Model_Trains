@@ -4,7 +4,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {
     productListReducer,
 } from './reducers/productReducer'
-import {userListReducer, userCreateReducer, userDetailsReducer, userUpdateReducer} from './reducers/userReducers'
+import {userListReducer, userCreateReducer, userDetailsReducer, userUpdateReducer, userDeleteReducer} from './reducers/userReducers'
 import { workorderListReducer } from './reducers/workorderReducers'
 
 const reducer = combineReducers({
@@ -13,7 +13,9 @@ const reducer = combineReducers({
     userDetails: userDetailsReducer,
     userCreate: userCreateReducer,
     userUpdate: userUpdateReducer,
+    userDelete: userDeleteReducer,
     workorderList: workorderListReducer,
+
 })
 
 const initialState = {}

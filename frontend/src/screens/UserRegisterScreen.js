@@ -4,6 +4,7 @@ import FormContainer from '../components/FormContainer'
 import {create} from '../actions/userActions'
 import {useDispatch, useSelector} from 'react-redux'
 import Message from '../components/Message'
+import {useNavigate} from 'react-router-dom'
 
 
 const UserRegisterScreen = () => {
@@ -15,6 +16,7 @@ const UserRegisterScreen = () => {
     const [message, setMessage] = useState('')
     
     const dispatch = useDispatch()
+    let navigate = useNavigate()
 
     const userCreate = useSelector((state) => state.userCreate)
     const {userInfo} = userCreate
@@ -26,6 +28,7 @@ const UserRegisterScreen = () => {
             setMessage('Passwords do not match')
         } else {
             dispatch(create(firstName, lastName, email, password))
+            navigate('/userlist')
         }
         console.log(userInfo)
         

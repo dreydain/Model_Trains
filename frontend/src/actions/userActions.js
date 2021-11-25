@@ -16,6 +16,10 @@ import {
     USER_UPDATE_REQUEST,
     USER_UPDATE_SUCCESS,
     USER_UPDATE_FAIL,
+
+    USER_DELETE_REQUEST,
+    USER_DELETE_SUCCESS,    
+    USER_DELETE_FAIL,
 } from "../constants/userConstants"
 
 export const listUsers = () => async (dispatch) => {
@@ -110,6 +114,30 @@ export const updateUser = (user) => async (dispatch) => {
             : error.message
         dispatch({
             type: USER_UPDATE_FAIL,
+            payload: message,
+        })
+    }
+}
+
+export const deleteUser = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: USER_DELETE_REQUEST
+        })
+
+        await axios.delete(`/api/users/${id}`)
+
+        dispatch({
+            type: USER_DELETE_SUCCESS
+        })
+
+    } catch (error) {
+        const message =
+        error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        dispatch({
+            type: USER_DELETE_FAIL,
             payload: message,
         })
     }

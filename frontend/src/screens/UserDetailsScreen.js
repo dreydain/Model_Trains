@@ -1,20 +1,31 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getUserDetails} from '../actions/userActions'
-import {useParams} from 'react-router-dom'
+import {getUserDetails, deleteUser} from '../actions/userActions'
+import {useParams, useNavigate} from 'react-router-dom'
 import {Row, Col, ListGroup, Button} from 'react-bootstrap'
 
 const UserDetailsScreen = () => {
     const dispatch = useDispatch()
     const {id} = useParams();
+    let navigate = useNavigate()
     
+    const userDelete = useSelector((state) => state.userDelete)
+    const {success} = userDelete
 
     const userDetails = useSelector((state) => state.userDetails)
     const {user} = userDetails
 
     useEffect(() => {
         dispatch(getUserDetails(id))
-    }, [dispatch, id])
+    }, [dispatch, id, success])
+
+    const deleteHandler = (id) => {
+        dispatch(deleteUser(id))
+        if(window.confirm('Are you sure?')) {
+            dispatch(deleteUser(id))
+            navigate('/userlist')
+        }
+    }
 
     return (
         <>
@@ -56,7 +67,7 @@ const UserDetailsScreen = () => {
                         </Button>
                     </Col>
                     <Col>
-                        <Button className='my-5 float-end' variant='danger'>Terminate</Button>
+                        <Button className='my-5 float-end' variant='danger' onClick={() => deleteHandler(user._id)}>Terminate</Button>
                     </Col>
                 </Row>
             </Row>
