@@ -15,6 +15,9 @@ import {
     PRODUCT_UPDATE_REQUEST,
     PRODUCT_UPDATE_SUCCESS,
     PRODUCT_UPDATE_FAIL,
+    PRODUCT_CREATE_REQUEST,
+    PRODUCT_CREATE_SUCCESS,
+    PRODUCT_CREATE_FAIL,
 } from "../constants/productConstants"
 
 export const listProducts = () => async (dispatch) => {
@@ -105,5 +108,35 @@ export const updateProduct = (product) => async (dispatch) => {
             type: PRODUCT_UPDATE_FAIL,
             payload: message,
         })
+    }
+}
+
+export const createProduct = (number, name, brand, category, image, stock, price, description) => async (dispatch) => {
+    try {
+        dispatch({
+            type: PRODUCT_CREATE_REQUEST
+        })
+
+        const {data} = await axios.post(
+            '/api/products/new', 
+            {number, name, brand, category, image, stock, price, description},
+        )
+
+        dispatch({
+            type: PRODUCT_CREATE_SUCCESS,
+            payload: data
+        })
+
+        localStorage.setItem('productInfo', JSON.stringify(data))
+
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_CREATE_FAIL,
+            payload: 
+                error.response && error.response.data.message 
+                    ? error.response.data.message 
+                    : error.message
+        })
+        
     }
 }
