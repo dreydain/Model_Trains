@@ -31,7 +31,7 @@ const ProductListScreen = () => {
         <>
             <Row>
                 <Col>
-                    <Button className='my-3'>Add a Product</Button>
+                    <Button className='my-3' href={'/products/new'}>Add a Product</Button>
                 </Col>
             </Row>
             

@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Form, Button} from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
-import {getProductDetails, updateProduct, } from '../actions/productActions'
-import {useParams, useNavigate} from 'react-router-dom'
-import {PRODUCT_UPDATE_RESET} from '../constants/productConstants'
+import {createProduct} from '../actions/productActions'
+import {useNavigate} from 'react-router-dom'
 
 
 
-const ProductUpdateScreen = () => {
+
+const ProductCreateScreen = () => {
     const [number, setNumber] = useState('')
     const [name, setName] = useState('')
     const [brand, setBrand] = useState('')
@@ -18,41 +18,17 @@ const ProductUpdateScreen = () => {
     const [price, setPrice] = useState(Number)
     const [description, setDescription] = useState('')
     
-    let navigate = useNavigate()
     const dispatch = useDispatch()
-    const {id} = useParams();
+    let navigate = useNavigate()
 
-    const productDetails = useSelector((state) => state.productDetails)
-    const {product} = productDetails
-
-    const productUpdate = useSelector((state) => state.productUpdate)
-    const {success} = productUpdate
-
-
-    useEffect(() => {
-        
-        if(!product.name || !product._id || success) {
-            dispatch({type: PRODUCT_UPDATE_RESET})
-            dispatch(getProductDetails(id))
-    
-        } else {
-            setNumber(product.number)
-            setName(product.name)
-            setBrand(product.brand)
-            setCategory(product.category)
-            setImage(product.image)
-            setStock(product.stock)
-            setPrice(product.price)
-            setDescription(product.description)
-        }
-        
-    }, [dispatch, id, success, product])
-    
+    const productCreate = useSelector((state) => state.productCreate)
+    const {productInfo} = productCreate
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(updateProduct({id: product._id, number, name, brand, category, image, stock, price, description}))
+        dispatch(createProduct(number, name, brand, category, image, stock, price, description))
         navigate('/productlist')
+        console.log(productInfo)
     }
 
     
@@ -142,11 +118,11 @@ const ProductUpdateScreen = () => {
                 </Form.Group>
 
                 <Button type='submit' variant='primary' className='my-3'>
-                    Update
+                    Create
                 </Button>
             </Form>
         </FormContainer>
     )
 }
 
-export default ProductUpdateScreen
+export default ProductCreateScreen

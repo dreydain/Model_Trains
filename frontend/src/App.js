@@ -7,6 +7,7 @@ import WorkOrderListScreen from './screens/WorkOrderListScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductDetailsScreen from './screens/ProductDetailsScreen'
 import ProductUpdateScreen from './screens/ProductUpdateScreen'
+import ProductCreateScreen from './screens/ProductCreateScreen'
 import UserListScreen from './screens/UserListScreen'
 import UserRegisterScreen from './screens/UserRegisterScreen'
 import UserDetailsScreen from './screens/UserDetailsScreen'
@@ -23,6 +24,7 @@ function App() {
             <Route path='/productlist' element={<ProductListScreen/>}/>
             <Route path='/products/:id' element={<ProductDetailsScreen/>}/>
             <Route path='/products/:id/edit' element={<ProductUpdateScreen/>}/>
+            <Route path='/products/new' element={<ProductCreateScreen/>}/>
             <Route path='/userlist' element={<UserListScreen/>}/>
             <Route path='/users/new' element={<UserRegisterScreen/>}/>
             <Route path='/users/:id' element={<UserDetailsScreen/>}/>
