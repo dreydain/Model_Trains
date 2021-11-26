@@ -51,27 +51,65 @@ const createProduct = (req, res) => {
         })
 }
 
-//@desc Update Product
-//@route Put /api/products/:id
-//@access Public
-const updateProduct = (req, res) => {
-    console.log("inside update");
-    console.log(req.params.id);
-    console.log(req.body);
-    //res.json("inside update");
-    Product.findByIdAndUpdate(req.params.id, req.body, {
-        new:true, 
-        runValidators:true
-    })
-        .then((updatedProduct) => {
-            console.log(updatedProduct);
-            res.json(updatedProduct);
+// //@desc Update Product
+// //@route Put /api/products/:id
+// //@access Public
+// const updateProduct = (req, res) => {
+//     console.log("inside update");
+//     console.log(req.params.id);
+//     console.log(req.body);
+//     //res.json("inside update");
+//     Product.findByIdAndUpdate(req.params.id, req.body, {
+//         new:true, 
+//         runValidators:true
+//     })
+//         .then((updatedProduct) => {
+//             console.log(updatedProduct);
+//             res.json(updatedProduct);
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//             res.json(err);
+//         });
+// }
+
+//@desc Update user profile
+//@route  PUT /api/users/profile
+//@access Private
+const updateProduct = asyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id)
+
+    if(product) {
+        product.number = req.body.number || product.number
+        product.name = req.body.name || product.name
+        product.brand = req.body.brand || product.brand
+        product.category = req.body.category || product.category
+        product.stock = req.body.stock || product.stock
+        product.price = req.body.price || product.price
+        product.description = req.body.description || product.description
+        product.image = req.body.image || product.image
+        product.user = req.body.user || product.user
+        if(req.body.password) {
+            product.password = req.body.password
+        }
+
+        const updatedProduct = await product.save()
+
+        res.json({
+            _id: updatedProduct._id,
+            number: updatedProduct.number,
+            name: updatedProduct.name,
+            brand: updatedProduct.brand,
+            category: updatedProduct.category,
+            stock: updatedProduct.stock,
+            price: updatedProduct.price,
+            description: updatedProduct.description,
+            image: updatedProduct.image,
+            user: updatedProduct.user
         })
-        .catch((err) => {
-            console.log(err);
-            res.json(err);
-        });
-}
+
+    }
+})
 
 //@desc Delete Product
 //@route  Delete /api/Products/:id

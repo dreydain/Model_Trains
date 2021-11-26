@@ -88,7 +88,7 @@ export const updateProduct = (product) => async (dispatch) => {
             type: PRODUCT_UPDATE_REQUEST
         })
 
-        const {data} = axios.put(`/api/users/${product.id}/edit`, product)
+        const {data} = axios.put(`/api/products/${product.id}`, product)
         
 
         dispatch({

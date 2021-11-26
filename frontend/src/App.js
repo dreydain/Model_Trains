@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import WorkOrderListScreen from './screens/WorkOrderListScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductDetailsScreen from './screens/ProductDetailsScreen'
+import ProductUpdateScreen from './screens/ProductUpdateScreen'
 import UserListScreen from './screens/UserListScreen'
 import UserRegisterScreen from './screens/UserRegisterScreen'
 import UserDetailsScreen from './screens/UserDetailsScreen'
@@ -21,6 +22,7 @@ function App() {
             <Route path='/workorderlist' element={<WorkOrderListScreen/>}/>
             <Route path='/productlist' element={<ProductListScreen/>}/>
             <Route path='/products/:id' element={<ProductDetailsScreen/>}/>
+            <Route path='/products/:id/edit' element={<ProductUpdateScreen/>}/>
             <Route path='/userlist' element={<UserListScreen/>}/>
             <Route path='/users/new' element={<UserRegisterScreen/>}/>
             <Route path='/users/:id' element={<UserDetailsScreen/>}/>
