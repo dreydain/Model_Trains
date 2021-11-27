@@ -21,7 +21,7 @@ const WorkOrderListScreen = () => {
         <>
             <Row>
                 <Col>
-                    <Button className='my-2 float-end'>Add a WorkOrder</Button>
+                    <Button className='my-2 float-end' href={'/workorders/new'}>Add a WorkOrder</Button>
                 </Col>
             </Row>
             
