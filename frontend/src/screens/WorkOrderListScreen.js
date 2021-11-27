@@ -29,6 +29,7 @@ const WorkOrderListScreen = () => {
                 <thead>
                     <tr>
                         <th>Work Order</th>
+                        <th>Customer</th>
                         <th>Quantity</th>
                         <th>Order Date</th>
                         <th>Due Date</th>
@@ -39,8 +40,11 @@ const WorkOrderListScreen = () => {
                 <tbody>
                     {workorders.map((workorder) => (
                         <tr key={workorder._id}>
-                            <td>{workorder.number}</td>
-                            <td>{workorder.orderItems.quantity}</td>
+                            <td><Link to={`/workorders/${workorder._id}`}>{workorder.number}</Link></td>
+                            <td>{workorder.customer.name}</td>
+                            {workorder.orders.map((orderItems) => (
+                                <td>{orderItems.quantity}</td>
+                            ))}
                             <td>{workorder.orderDate}</td>
                             <td>{workorder.dueDate}</td>
                             <td>{workorder.shipped}</td>
