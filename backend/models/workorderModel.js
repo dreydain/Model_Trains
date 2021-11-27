@@ -1,14 +1,26 @@
 import mongoose from 'mongoose'
 
+const orderItemsSchema = mongoose.Schema({
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    },
+    quantity: {type: Number},
+    complete: {type: Number},
+    mold: {type: Number},
+    cast: {type: Number},
+    paint: {type: Number},
+}, {timestamps: true})
+
 const workorderSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref: 'User'
     },
     number: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     rush: {
         type: Boolean,
@@ -24,34 +36,14 @@ const workorderSchema = mongoose.Schema({
         required: true
     },
     customer: {
-        type: String,
-        required: true
+        name: {type: String},
+        email: {type: String},
+        phone: {type: String}
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    phone: {
-        type: String,
-        required: true
-    },
+
     shipped: {type: Date},
 
-    orderItems: [
-        {
-            product: {
-                type: mongoose.Schema.Types.ObjectId, 
-                required: true,
-                ref: 'Product'
-            },
-            quantity: {type: Number, required: true},
-            complete: {type: Number},
-            mold: {type: Number},
-            cast: {type: Number},
-            paint: {type: Number},
-        }
-    ],
+    orders: [orderItemsSchema],
 
 }, {timeStamps: true})
 

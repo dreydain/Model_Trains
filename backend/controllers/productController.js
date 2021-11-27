@@ -51,30 +51,9 @@ const createProduct = (req, res) => {
         })
 }
 
-// //@desc Update Product
-// //@route Put /api/products/:id
-// //@access Public
-// const updateProduct = (req, res) => {
-//     console.log("inside update");
-//     console.log(req.params.id);
-//     console.log(req.body);
-//     //res.json("inside update");
-//     Product.findByIdAndUpdate(req.params.id, req.body, {
-//         new:true, 
-//         runValidators:true
-//     })
-//         .then((updatedProduct) => {
-//             console.log(updatedProduct);
-//             res.json(updatedProduct);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//             res.json(err);
-//         });
-// }
 
-//@desc Update user profile
-//@route  PUT /api/users/profile
+//@desc Update Product
+//@route  PUT /api/products/:id
 //@access Private
 const updateProduct = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id)
