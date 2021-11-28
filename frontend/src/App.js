@@ -5,7 +5,8 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import WorkOrderListScreen from './screens/WorkOrderListScreen'
 import WorkorderDetailsScreen from './screens/WorkorderDetailsScreen'
-import WorkorderInfoCreateScreen from './screens/WorkorderInfoCreateScreen'
+import WorkorderInfoCreateScreen from './screens/WorkorderCreateScreen'
+import WorkorderCustomerCreateScreen from './screens/WorkorderCustomerAddProductsScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductDetailsScreen from './screens/ProductDetailsScreen'
 import ProductUpdateScreen from './screens/ProductUpdateScreen'
@@ -24,7 +25,8 @@ function App() {
           <Routes>
             <Route path='/workorderlist' element={<WorkOrderListScreen/>}/>
             <Route path='/workorders/:id' element={<WorkorderDetailsScreen/>}/>
-            <Route path='/workorders/new' element={<WorkorderInfoCreateScreen/>}/>
+            <Route path='/workorders/new/info' element={<WorkorderInfoCreateScreen/>}/>
+            <Route path='/workorders/new/customer' element={<WorkorderCustomerCreateScreen/>}/>
             <Route path='/productlist' element={<ProductListScreen/>}/>
             <Route path='/products/:id' element={<ProductDetailsScreen/>}/>
             <Route path='/products/:id/edit' element={<ProductUpdateScreen/>}/>

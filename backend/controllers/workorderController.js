@@ -43,7 +43,9 @@ const createWorkorder = asyncHandler(async (req, res) => {
         rush, 
         orderDate, 
         dueDate, 
-        customer, 
+        name,
+        email,
+        phone, 
         shipped,
         orders
     } = req.body
@@ -58,7 +60,9 @@ const createWorkorder = asyncHandler(async (req, res) => {
             rush,
             orderDate,
             dueDate,
-            customer,
+            name,
+            email,
+            phone,
             shipped,
             orders
         })
@@ -132,7 +136,9 @@ const updateWorkorder = asyncHandler(async (req, res) => {
         workorder.rush = req.body.rush || workorder.rush
         workorder.orderDate = req.body.orderDate || workorder.orderDate
         workorder.dueDate = req.body.dueDate || workorder.dueDate
-        workorder.customer = req.body.customer || workorder.customer
+        workorder.name = req.body.name || workorder.name
+        workorder.email = req.body.email || workorder.email
+        workorder.phone = req.body.phone || workorder.phone
         workorder.shipped = req.body.shipped || workorder.shipped
         workorder.orders = req.body.orders || workorder.orders
 
@@ -144,7 +150,9 @@ const updateWorkorder = asyncHandler(async (req, res) => {
             rush: updatedWorkorder.rush,
             orderDate: updatedWorkorder.orderDate,
             dueDate: updatedWorkorder.dueDate,
-            customer: updatedWorkorder.customer,
+            name: updatedWorkorder.name,
+            email: updatedWorkorder.name,
+            phone: updatedWorkorder.phone,
             shipped: updatedWorkorder.shipped,
             orders: updatedWorkorder.orders,
             

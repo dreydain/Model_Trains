@@ -12,9 +12,9 @@ const WorkorderCreateScreen = () => {
     const [rush, setRush] = useState('')
     const [orderDate, setOrderDate] = useState('')
     const [dueDate, setDueDate] = useState('')
-    // const [name, setName] = useState('')
-    // const [email, setEmail] = useState('')
-    // const [phone, setPhone] = useState('')
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
     // const [product, setProduct] = useState('')
     // const [quantity, setQuantity] = useState(Number)
 
@@ -26,8 +26,8 @@ const WorkorderCreateScreen = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(createWorkorder(number, rush, orderDate, dueDate))
-        navigate('/workorderlist')
+        dispatch(createWorkorder(number, rush, orderDate, dueDate, name, email, phone))
+        navigate('/workorders/new/customer')
         console.log(workorderInfo)
     }
 
@@ -92,7 +92,7 @@ const WorkorderCreateScreen = () => {
                         </Col>
                     </Row>
                 </Card>
-                {/* <Card>
+                <Card>
                     <Row>
                         <h1>Customer Info</h1>
                     </Row>
@@ -132,7 +132,7 @@ const WorkorderCreateScreen = () => {
                         </Col>
                     </Row>
                 </Card>
-                <Card>
+                {/*<Card>
                     <Row>
                         <h1>Order Items</h1>
                     </Row>

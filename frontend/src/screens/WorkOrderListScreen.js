@@ -21,7 +21,7 @@ const WorkOrderListScreen = () => {
         <>
             <Row>
                 <Col>
-                    <Button className='my-2 float-end' href={'/workorders/new'}>Add a WorkOrder</Button>
+                    <Button className='my-2 float-end' href={'/workorders/new/info'}>Add a WorkOrder</Button>
                 </Col>
             </Row>
             
@@ -41,7 +41,7 @@ const WorkOrderListScreen = () => {
                     {workorders.map((workorder) => (
                         <tr key={workorder._id}>
                             <td><Link to={`/workorders/${workorder._id}`}>{workorder.number}</Link></td>
-                            <td>{workorder.customer && workorder.customer.name}</td>
+                            <td>{workorder.name}</td>
                             {workorder.orders.map((orderItems) => (
                                 <td>{orderItems.quantity}</td>
                             ))}

@@ -12,6 +12,10 @@ import {
     WORKORDER_CREATE_SUCCESS,
     WORKORDER_CREATE_FAIL,
     WORKORDER_CREATE_RESET,
+    
+    WORKORDER_CUSTOMER_UPDATE_REQUEST,
+    WORKORDER_CUSTOMER_UPDATE_SUCCESS,
+    WORKORDER_CUSTOMER_UPDATE_FAIL,
 } from "../constants/workorderConstants"
 
 export const listWorkorders = () => async (dispatch) => {
@@ -55,7 +59,7 @@ export const getWorkorderDetails = (id) => async (dispatch) => {
     }
 }
 
-export const createWorkorder = (number, rush, orderDate, dueDate) => async (dispatch) => {
+export const createWorkorder = (number, rush, orderDate, dueDate, name, email, phone) => async (dispatch) => {
     try {
         dispatch({
             type: WORKORDER_CREATE_REQUEST
@@ -63,7 +67,7 @@ export const createWorkorder = (number, rush, orderDate, dueDate) => async (disp
 
         const {data} = await axios.post(
             '/api/workorders/new', 
-            {number, rush, orderDate, dueDate},
+            {number, rush, orderDate, dueDate, name, email, phone},
         )
 
         dispatch({
@@ -82,6 +86,32 @@ export const createWorkorder = (number, rush, orderDate, dueDate) => async (disp
                     : error.message
         })
         
+    }
+}
+
+export const updateWorkorderCustomer = (workorder) => async (dispatch) => {
+    try {
+        dispatch({
+            type: WORKORDER_CUSTOMER_UPDATE_REQUEST
+        })
+
+        const {data} = axios.put(`/api/workorders/${workorder.id}`, workorder)
+        
+
+        dispatch({
+            type: WORKORDER_CUSTOMER_UPDATE_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        const message =
+        error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        dispatch({
+            type: WORKORDER_CUSTOMER_UPDATE_FAIL,
+            payload: message,
+        })
     }
 }
 

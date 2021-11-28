@@ -19,6 +19,7 @@ import {
     workorderListReducer, 
     workorderDetailsReducer,
     workorderCreateReducer,
+    customerUpdateReducer,
 
 } from './reducers/workorderReducers'
 
@@ -38,6 +39,7 @@ const reducer = combineReducers({
     workorderList: workorderListReducer,
     workorderDetails: workorderDetailsReducer,
     workorderCreate: workorderCreateReducer,
+    customerUpdate: customerUpdateReducer,
 
 })
 

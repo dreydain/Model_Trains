@@ -35,11 +35,11 @@ const workorderSchema = mongoose.Schema({
         type: Date,
         required: true
     },
-    customer: {
-        name: {type: String},
-        email: {type: String},
-        phone: {type: String}
-    },
+    
+    name: {type: String},
+    email: {type: String},
+    phone: {type: String},
+    
 
     shipped: {type: Date},
 
