@@ -7,6 +7,11 @@ import {
     WORKORDER_DETAILS_REQUEST,
     WORKORDER_DETAILS_SUCCESS,
     WORKORDER_DETAILS_FAIL,
+
+    WORKORDER_CREATE_REQUEST,
+    WORKORDER_CREATE_SUCCESS,
+    WORKORDER_CREATE_FAIL,
+    WORKORDER_CREATE_RESET,
 } from "../constants/workorderConstants"
 
 export const listWorkorders = () => async (dispatch) => {
@@ -49,3 +54,34 @@ export const getWorkorderDetails = (id) => async (dispatch) => {
         })
     }
 }
+
+export const createWorkorder = (number, rush, orderDate, dueDate) => async (dispatch) => {
+    try {
+        dispatch({
+            type: WORKORDER_CREATE_REQUEST
+        })
+
+        const {data} = await axios.post(
+            '/api/workorders/new', 
+            {number, rush, orderDate, dueDate},
+        )
+
+        dispatch({
+            type: WORKORDER_CREATE_SUCCESS,
+            payload: data
+        })
+
+        localStorage.setItem('workorderInfo', JSON.stringify(data))
+
+    } catch (error) {
+        dispatch({
+            type: WORKORDER_CREATE_FAIL,
+            payload: 
+                error.response && error.response.data.message 
+                    ? error.response.data.message 
+                    : error.message
+        })
+        
+    }
+}
+

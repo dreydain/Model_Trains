@@ -15,7 +15,12 @@ import {
     userUpdateReducer, 
     userDeleteReducer
 } from './reducers/userReducers'
-import { workorderListReducer, workorderDetailsReducer, } from './reducers/workorderReducers'
+import { 
+    workorderListReducer, 
+    workorderDetailsReducer,
+    workorderCreateReducer,
+
+} from './reducers/workorderReducers'
 
 const reducer = combineReducers({
     productList: productListReducer,
@@ -32,6 +37,7 @@ const reducer = combineReducers({
     
     workorderList: workorderListReducer,
     workorderDetails: workorderDetailsReducer,
+    workorderCreate: workorderCreateReducer,
 
 })
 

@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react'
-import {Link, useParams, useNavigate} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getProductDetails, deleteProduct} from '../actions/productActions'
-import {Row, Col, Image, ListGroup, Card, Button, Form} from 'react-bootstrap'
+import {Row, Col, Image, ListGroup, Button} from 'react-bootstrap'
 
 
 
