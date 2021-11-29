@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Form, Row, Col, Button, Card} from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+//import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import { createWorkorder } from '../actions/workorderActions'
@@ -15,26 +15,26 @@ const WorkorderCreateScreen = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
-    // const [product, setProduct] = useState('')
-    // const [quantity, setQuantity] = useState(Number)
+    const [product, setProduct] = useState('')
+    const [quantity, setQuantity] = useState(Number)
 
     const dispatch = useDispatch()
-    let navigate = useNavigate()
+    //let navigate = useNavigate()
 
     const workorderCreate = useSelector((state) => state.workorderCreate)
     const {workorderInfo} = workorderCreate
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(createWorkorder(number, rush, orderDate, dueDate, name, email, phone))
-        navigate('/workorders/new/customer')
-        console.log(workorderInfo)
+        dispatch(createWorkorder(number, rush, orderDate, dueDate, name, email, phone, product, quantity))
+        //navigate()
+        console.log(workorderInfo)        
     }
 
     return (
         <FormContainer>
             <Form onSubmit={submitHandler}>
-                <Card>
+                <Card className='p-3'>
                     <Row>
                         <h1>Workorder Info</h1>
                         <Col>
@@ -92,7 +92,7 @@ const WorkorderCreateScreen = () => {
                         </Col>
                     </Row>
                 </Card>
-                <Card>
+                <Card className='p-3'>
                     <Row>
                         <h1>Customer Info</h1>
                     </Row>
@@ -132,7 +132,7 @@ const WorkorderCreateScreen = () => {
                         </Col>
                     </Row>
                 </Card>
-                {/*<Card>
+                <Card className='p-3'>
                     <Row>
                         <h1>Order Items</h1>
                     </Row>
@@ -160,55 +160,7 @@ const WorkorderCreateScreen = () => {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group controlId='product'>
-                                <Form.Label>Product #</Form.Label>
-                                <Form.Control 
-                                    type='text' 
-                                    placeholder='Enter Product #' 
-                                    value={product}
-                                    onChange={(e) => setProduct(e.target.value)}
-                                ></Form.Control>
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group controlId='quantity'>
-                                <Form.Label>Quantity</Form.Label>
-                                <Form.Control 
-                                    type='number' 
-                                    placeholder='Select Quantity' 
-                                    value={quantity}
-                                    onChange={(e) => setQuantity(e.target.value)}
-                                ></Form.Control>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group controlId='product'>
-                                <Form.Label>Product #</Form.Label>
-                                <Form.Control 
-                                    type='text' 
-                                    placeholder='Enter Product #' 
-                                    value={product}
-                                    onChange={(e) => setProduct(e.target.value)}
-                                ></Form.Control>
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group controlId='quantity'>
-                                <Form.Label>Quantity</Form.Label>
-                                <Form.Control 
-                                    type='number' 
-                                    placeholder='Select Quantity' 
-                                    value={quantity}
-                                    onChange={(e) => setQuantity(e.target.value)}
-                                ></Form.Control>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                </Card> */}
+                </Card>
                 <Row>
                     <Col>
                         <Button type='submit'>Create Workorder</Button>

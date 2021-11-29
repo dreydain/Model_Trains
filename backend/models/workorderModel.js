@@ -1,16 +1,16 @@
 import mongoose from 'mongoose'
 
-const orderItemsSchema = mongoose.Schema({
-    product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
-    },
-    quantity: {type: Number},
-    complete: {type: Number},
-    mold: {type: Number},
-    cast: {type: Number},
-    paint: {type: Number},
-}, {timestamps: true})
+// const orderItemsSchema = mongoose.Schema({
+//     product: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: 'Product'
+//     },
+//     paint: {type: Number},
+//     quantity: {type: Number},
+//     complete: {type: Number},
+//     mold: {type: Number},
+//     cast: {type: Number},
+// }, {timestamps: true})
 
 const workorderSchema = mongoose.Schema({
     user: {
@@ -43,7 +43,19 @@ const workorderSchema = mongoose.Schema({
 
     shipped: {type: Date},
 
-    orders: [orderItemsSchema],
+    orders: [
+        {
+            product: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Product'
+            },
+            paint: {type: Number},
+            quantity: {type: Number},
+            complete: {type: Number},
+            mold: {type: Number},
+            cast: {type: Number}
+        }
+    ],
 
 }, {timeStamps: true})
 

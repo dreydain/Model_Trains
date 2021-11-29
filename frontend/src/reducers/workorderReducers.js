@@ -12,10 +12,6 @@ import {
     WORKORDER_CREATE_SUCCESS,
     WORKORDER_CREATE_FAIL,
 
-    WORKORDER_CUSTOMER_UPDATE_REQUEST,
-    WORKORDER_CUSTOMER_UPDATE_SUCCESS,
-    WORKORDER_CUSTOMER_UPDATE_FAIL,
-    WORKORDER_CUSTOMER_UPDATE_RESET,
 } from "../constants/workorderConstants"
 
 export const workorderListReducer = (state = {workorders: []}, action) => {
@@ -46,7 +42,7 @@ export const workorderDetailsReducer = (state = {workorder: {orders: []}}, actio
     }
 }
 
-export const workorderCreateReducer = ( state = { }, action) => {
+export const workorderCreateReducer = ( state = {workorder: {orders: []} }, action) => {
     switch(action.type) {
         case WORKORDER_CREATE_REQUEST:
             return {loading: true}
@@ -60,22 +56,8 @@ export const workorderCreateReducer = ( state = { }, action) => {
                 loading: false,
                 error: action.payload
             }
+            
         default: 
-            return state
-    }
-}
-
-export const customerUpdateReducer = (state = {workorder: {customer: {}} }, action) => {
-    switch(action.type) {
-        case WORKORDER_CUSTOMER_UPDATE_REQUEST:
-            return {loading: true}
-        case WORKORDER_CUSTOMER_UPDATE_SUCCESS:
-            return {loading: false, success: true}
-        case WORKORDER_CUSTOMER_UPDATE_FAIL:
-            return {loading: false, error: action.payload}
-        case WORKORDER_CUSTOMER_UPDATE_RESET:
-            return {workorder: {}}
-        default:
             return state
     }
 }

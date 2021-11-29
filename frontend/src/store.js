@@ -19,9 +19,12 @@ import {
     workorderListReducer, 
     workorderDetailsReducer,
     workorderCreateReducer,
-    customerUpdateReducer,
 
 } from './reducers/workorderReducers'
+
+import {
+    orderReducer,
+} from './reducers/orderReducers'
 
 const reducer = combineReducers({
     productList: productListReducer,
@@ -39,7 +42,8 @@ const reducer = combineReducers({
     workorderList: workorderListReducer,
     workorderDetails: workorderDetailsReducer,
     workorderCreate: workorderCreateReducer,
-    customerUpdate: customerUpdateReducer,
+
+    orderReducer: orderReducer,
 
 })
 

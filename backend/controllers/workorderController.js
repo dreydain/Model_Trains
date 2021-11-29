@@ -72,58 +72,7 @@ const createWorkorder = asyncHandler(async (req, res) => {
         res.status(201).json(createdWorkorder)
     }
 
-}) 
-
-// //@desc Create workorder
-// //@route Post /api/workorder/new
-// //@access Public
-// const createWorkorder = (req, res) => {
-//     const workorder = new Workorder(req.body)
-//     console.log(workorder);
-//     workorder.save()
-//         .then((workorder) => {
-//             console.log("successfully created workorder");
-//             res.json({ message: "Successfully created workorder!", workorder: workorder })
-//         })
-//         .catch((err) => {
-//             console.log("workorder creation failed", err);
-//             res.json(err)
-//         })
-// }
-
-// //@desc Update Workorder
-// //@route  PUT /api/workorders/:id
-// //@access Private
-// const updateWorkorder = asyncHandler(async (req, res) => {
-//     const workorder = await Workorder.findById(req.params.id)
-
-//     if(workorder) {
-//         workorder.number = req.body.number || workorder.number
-//         workorder.rush = req.body.rush || workorder.rush
-//         workorder.orderDate = req.body.orderDate || workorder.orderDate
-//         workorder.dueDate = req.body.dueDate || workorder.dueDate
-//         workorder.customer = {
-//             name: req.body.name,
-//             email: req.body.email,
-//             phone: req.body.phone,
-//         }
-        
-//         workorder.shipped = req.body.shipped || workorder.shipped
-
-//         workorder.orderItems = {
-//             product: req.body.product,
-//             quantity: req.body.quantity,
-//             complete: req.body.complete,
-//             mold: req.body.mold,
-//             cast: req.body.cast,
-//             paint: req.body.paint
-//         }
-
-//         const updatedWorkorder = await workorder.save()
-
-//         res.json({updatedWorkorder})
-//     }
-// })
+})
 
 //@desc Update Product
 //@route  PUT /api/products/:id
@@ -160,6 +109,7 @@ const updateWorkorder = asyncHandler(async (req, res) => {
 
     }
 })
+    
 
 //@desc Delete workorder
 //@route  Delete /api/workorders/:id

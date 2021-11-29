@@ -5,8 +5,7 @@ import {
     getOneWorkorder,
     createWorkorder,
     updateWorkorder,
-    deleteWorkorder, 
-    
+    deleteWorkorder,
 } from '../controllers/workorderController.js'
 
 //get all workorders
