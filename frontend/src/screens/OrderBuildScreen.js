@@ -15,9 +15,13 @@ const OrderBuildScreen = () => {
     const order = useSelector(state => state.order)
     const {orderItems} = order
 
-    const removeFromOrderHandler = () => {
-        dispatch(removeFromOrder())
+    const [items, setItems] = useState([])
+
+    const buildOrder = (e) => {
+        setItems(orderItems)
+
     }
+
 
     useEffect(() => {
         dispatch(listProducts())
@@ -26,6 +30,47 @@ const OrderBuildScreen = () => {
 
     return (
         <>
+            <h1>Orders</h1>
+            {orderItems.length === 0
+                ? <Message>There are no items added</Message>
+                : <ListGroup variant='flush'>
+                {orderItems.map((item) => (
+                    <ListGroup.Item key={item.product}>
+                        <Row>
+                            <Col md={2}>
+                                <Image src={item.image} alt={item.name} fluid rounded />
+                            </Col>
+                            <Col md={2}>
+                                <Link to={`/product/${item.product}`}>{item.number}</Link>
+                            </Col>
+                            <Col md={2}>{item.name}</Col>
+                            <Col md={3}>
+                                <Form.Control
+                                    type='number'
+                                    placeholder='Enter Quantity'
+                                    value={item.qty}
+                                    onChange={(e) => dispatch(addToOrder(item.product, Number(e.target.value)))}
+                                >
+                                    {/* {[...Array(item.stock).keys()].map((x) => (
+                                        <option key={x + 1} value={x + 1}>
+                                            {x + 1}
+                                        </option>
+                                    ))} */}
+                                </Form.Control>
+                            </Col>
+                            <Col md={2}>
+                                <Button type='button' variant='danger' onClick={() => dispatch(removeFromOrder(item.product))}>
+                                    Remove
+                                </Button>
+                            </Col>
+                        </Row>
+                    </ListGroup.Item>
+                ))}
+                <Col>
+                    <Button onClick={() => buildOrder(orderItems)}>Build Workorder</Button>
+                </Col>
+            </ListGroup>
+            }
             
             <h1>Select Products For Workorder</h1>
             <Table striped bordered hover responsive className='table-md'>
@@ -48,7 +93,7 @@ const OrderBuildScreen = () => {
                             <td>{product.brand}</td>
                             <td>{product.category}</td>
                             <td>
-                                <Button>Add</Button> | <Button variant='danger'>Remove</Button>
+                                <Button onClick={() => dispatch(addToOrder(product._id))}>Add</Button>
                             </td>
                         </tr>
                     ))}
