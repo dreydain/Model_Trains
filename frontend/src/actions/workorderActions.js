@@ -56,7 +56,7 @@ export const getWorkorderDetails = (id) => async (dispatch) => {
     }
 }
 
-export const createWorkorder = (number, rush, orderDate, dueDate, name, email, phone) => async (dispatch) => {
+export const createWorkorder = (number, rush, orderDate, dueDate, name, email, phone, orders) => async (dispatch) => {
     try {
         dispatch({
             type: WORKORDER_CREATE_REQUEST
@@ -64,7 +64,7 @@ export const createWorkorder = (number, rush, orderDate, dueDate, name, email, p
 
         const {data} = await axios.post(
             '/api/workorders/new', 
-            {number, rush, orderDate, dueDate, name, email, phone},
+            {number, rush, orderDate, dueDate, name, email, phone, orders},
         )
 
         dispatch({

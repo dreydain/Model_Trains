@@ -8,25 +8,14 @@ import {
     // ORDER_LIST_FAIL,
 } from '../constants/orderConstants'
 
-export const addToOrder = (id, quantity, mold, cast, paint, complete,) => async (dispatch, getState) => {
+export const addToOrder = (id, quantity) => async (dispatch, getState) => {
     const {data} = await axios.get(`/api/products/${id}`)
     dispatch({
         type: ORDER_ADD_ITEM,
         payload: {
             product: data._id,
-            number: data.number,
-            name: data.name,
-            brand: data.brand,
-            category: data.category,
-            price: data.price,
-            image: data.image,
-            description: data.description,
-            stock: data.stock,
             quantity,
-            mold,
-            cast,
-            paint,
-            complete
+            
         }
     })
 

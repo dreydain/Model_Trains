@@ -17,6 +17,10 @@ const OrderBuildScreen = () => {
 
     const [items, setItems] = useState([])
 
+    const [newArray, setNewArray] = useState([])
+
+    
+
     const buildOrder = (e) => {
         setItems(orderItems)
 
@@ -41,7 +45,7 @@ const OrderBuildScreen = () => {
                                 <Image src={item.image} alt={item.name} fluid rounded />
                             </Col>
                             <Col md={2}>
-                                <Link to={`/product/${item.product}`}>{item.number}</Link>
+                                <Link to={`/product/${item.product}`}>{item.product}</Link>
                             </Col>
                             <Col md={2}>{item.name}</Col>
                             <Col md={3}>
