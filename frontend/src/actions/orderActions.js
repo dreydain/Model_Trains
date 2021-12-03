@@ -14,8 +14,8 @@ export const addToOrder = (id, quantity) => async (dispatch, getState) => {
         type: ORDER_ADD_ITEM,
         payload: {
             product: data._id,
-            quantity,
             
+            quantity
         }
     })
 

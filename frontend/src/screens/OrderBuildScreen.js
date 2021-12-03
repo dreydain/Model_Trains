@@ -17,7 +17,7 @@ const OrderBuildScreen = () => {
 
     const [items, setItems] = useState([])
 
-    const [newArray, setNewArray] = useState([])
+    
 
     
 

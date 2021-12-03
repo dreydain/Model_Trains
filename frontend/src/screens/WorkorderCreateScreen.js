@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Table, Col, Row, Button, ListGroup, Image, Form, Card} from 'react-bootstrap'
 //import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import FormContainer from '../components/FormContainer'
+//import FormContainer from '../components/FormContainer'
 import { createWorkorder } from '../actions/workorderActions'
 import {addToOrder, removeFromOrder} from '../actions/orderActions'
 import {listProducts} from '../actions/productActions'
@@ -20,7 +20,6 @@ const WorkorderCreateScreen = () => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [orders, setOrders] = useState([])
-
     const dispatch = useDispatch()
     //let navigate = useNavigate()
 
@@ -33,13 +32,17 @@ const WorkorderCreateScreen = () => {
     const order = useSelector(state => state.order)
     const {orderItems} = order
 
+    const buildOrder = (e) => {
+        setOrders([...orderItems])
+
+    }
+
     useEffect(() => {
         dispatch(listProducts())
     }, [dispatch])
 
     const submitHandler = (e) => {
         e.preventDefault()
-        setOrders([...orderItems])
         dispatch(createWorkorder(number, rush, orderDate, dueDate, name, email, phone, orders))
         //navigate()
         console.log(workorderInfo)        
@@ -147,7 +150,13 @@ const WorkorderCreateScreen = () => {
                         </Col>
                     </Row>
                 </Card>
+                <Row>
                 <h1>Orders</h1>
+                <Col>
+                    <Button onClick={() => buildOrder(orderItems)}>Build Workorder</Button>
+                </Col>
+                </Row>
+                    
                 {orderItems.length === 0
                     ? <Message>There are no items added</Message>
                     : <ListGroup variant='flush'>
