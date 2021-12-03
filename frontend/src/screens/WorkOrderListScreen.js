@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Button, Table, Row, Col} from 'react-bootstrap'
 import {listWorkorders} from '../actions/workorderActions'
 import {Link} from 'react-router-dom'
+import moment from 'moment'
 
 
 const WorkOrderListScreen = () => {
@@ -45,8 +46,8 @@ const WorkOrderListScreen = () => {
                             {workorder.orders.map((orderItems) => (
                                 <td>{orderItems.quantity}</td>
                             ))}
-                            <td>{workorder.orderDate}</td>
-                            <td>{workorder.dueDate}</td>
+                            <td>{moment(workorder.orderDate).format('MM/DD/YY')}</td>
+                            <td>{moment(workorder.dueDate).format('MM/DD/YY')}</td>
                             <td>{workorder.shipped}</td>
                             <td><Link to={`/workorders/${workorder._id}/update`}>Update</Link></td>
                         </tr>

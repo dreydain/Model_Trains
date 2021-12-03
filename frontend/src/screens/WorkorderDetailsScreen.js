@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getWorkorderDetails} from '../actions/workorderActions'
 import {Row, Col, ListGroup, Button, Table} from 'react-bootstrap'
+import moment from 'moment'
 
 
 
@@ -37,9 +38,9 @@ const WorkorderDetailsScreen = () => {
                         <Col><h4>Rush:</h4></Col>
                         <Col><h5>{workorder.rush === true ? 'Yes' : 'No'}</h5></Col>
                         <Col><h4>Order Date:</h4></Col>
-                        <Col><h5>{workorder.orderDate}</h5></Col>
+                        <Col><h5>{moment(workorder.orderDate).format("MM/DD/YY")}</h5></Col>
                         <Col><h4>Due Date:</h4></Col>
-                        <Col><h5>{workorder.dueDate}</h5></Col>
+                        <Col><h5>{moment(workorder.dueDate).format("MM/DD/YY")}</h5></Col>
                     </Row>
                 </ListGroup.Item>
 
