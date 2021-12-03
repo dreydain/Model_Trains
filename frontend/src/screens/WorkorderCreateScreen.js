@@ -33,9 +33,15 @@ const WorkorderCreateScreen = () => {
     const {orderItems} = order
 
     const buildOrder = (e) => {
-        setOrders([...orderItems])
-
+        setOrders([...orderItems.map((item) => {
+            return {
+                product: item.product,
+                quantity: item.quantity
+            }
+        })])
     }
+
+    
 
     useEffect(() => {
         dispatch(listProducts())
@@ -167,7 +173,7 @@ const WorkorderCreateScreen = () => {
                                     <Image src={item.image} alt={item.name} fluid rounded />
                                 </Col>
                                 <Col md={2}>
-                                    <Link to={`/product/${item.product}`}>{item.product}</Link>
+                                    <Link to={`/product/${item.product}`}>{item.number}</Link>
                                 </Col>
                                 <Col md={2}>{item.name}</Col>
                                 <Col md={3}>
