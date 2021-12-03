@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Table, Col, Row, Button, ListGroup, Image, Form, Card} from 'react-bootstrap'
-//import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-//import FormContainer from '../components/FormContainer'
 import { createWorkorder } from '../actions/workorderActions'
 import {addToOrder, removeFromOrder} from '../actions/orderActions'
 import {listProducts} from '../actions/productActions'
@@ -21,7 +20,7 @@ const WorkorderCreateScreen = () => {
     const [phone, setPhone] = useState('')
     const [orders, setOrders] = useState([])
     const dispatch = useDispatch()
-    //let navigate = useNavigate()
+    let navigate = useNavigate()
 
     const workorderCreate = useSelector((state) => state.workorderCreate)
     const {workorderInfo} = workorderCreate
@@ -50,7 +49,7 @@ const WorkorderCreateScreen = () => {
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(createWorkorder(number, rush, orderDate, dueDate, name, email, phone, orders))
-        //navigate()
+        navigate('/workorderlist')
         console.log(workorderInfo)        
     }
 
@@ -58,16 +57,11 @@ const WorkorderCreateScreen = () => {
         <>
         
             <Form onSubmit={submitHandler}>
-                <Card className='p-3'>
-                    <Row>
-                        <h1>Workorder Info</h1>
-                        <Col>
-                            <Button>Cancel</Button>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group controlId='number'>
+                <Card className='p-2'>
+                    <Row className='justify-content-md-center'>
+                        <Col className='mx-5'  md={4}>
+                            <h2>Workorder Info</h2>
+                            <Form.Group className='mb-3' controlId='number'>
                                 <Form.Label>Workorder #</Form.Label>
                                 <Form.Control 
                                     type='text' 
@@ -76,9 +70,8 @@ const WorkorderCreateScreen = () => {
                                     onChange={(e) => setNumber(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group controlId='rush'>
+                        
+                            <Form.Group className='mb-3' controlId='rush'>
                                 <Form.Label>Rush</Form.Label>
                                 <Form.Control 
                                     as='select'
@@ -89,11 +82,8 @@ const WorkorderCreateScreen = () => {
                                     <option>false</option>
                                 </Form.Control>
                             </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group controlId='orderDate'>
+                        
+                            <Form.Group className='mb-3' controlId='orderDate'>
                                 <Form.Label>Order Date</Form.Label>
                                 <Form.Control 
                                     type='date' 
@@ -102,9 +92,8 @@ const WorkorderCreateScreen = () => {
                                     onChange={(e) => setOrderDate(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group controlId='dueDate'>
+                        
+                            <Form.Group className='mb-3' controlId='dueDate'>
                                 <Form.Label>Due Date</Form.Label>
                                 <Form.Control 
                                     type='date' 
@@ -114,15 +103,10 @@ const WorkorderCreateScreen = () => {
                                 ></Form.Control>
                             </Form.Group>
                         </Col>
-                    </Row>
-                </Card>
-                <Card className='p-3'>
-                    <Row>
-                        <h1>Customer Info</h1>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group controlId='name'>
+                    
+                        <Col className='mx-5' md={4}>
+                            <h2>Customer Info</h2>
+                            <Form.Group className='mb-3' controlId='name'>
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control 
                                     type='text' 
@@ -131,9 +115,8 @@ const WorkorderCreateScreen = () => {
                                     onChange={(e) => setName(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group controlId='email'>
+                        
+                            <Form.Group className='mb-3' controlId='email'>
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control 
                                     type='text' 
@@ -142,9 +125,8 @@ const WorkorderCreateScreen = () => {
                                     onChange={(e) => setEmail(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group controlId='phone'>
+                        
+                            <Form.Group className='mb-3' controlId='phone'>
                                 <Form.Label>Phone</Form.Label>
                                 <Form.Control 
                                     type='text' 
@@ -157,10 +139,9 @@ const WorkorderCreateScreen = () => {
                     </Row>
                 </Card>
                 <Row>
-                <h1>Orders</h1>
-                <Col>
-                    <Button onClick={() => buildOrder(orderItems)}>Build Workorder</Button>
-                </Col>
+                    <Col className='my-3'>
+                        <h3>Orders</h3>
+                    </Col>
                 </Row>
                     
                 {orderItems.length === 0
@@ -202,12 +183,23 @@ const WorkorderCreateScreen = () => {
                 }
                 <Row>
                     <Col>
-                        <Button type='submit'>Create Workorder</Button>
+                        <Button
+                            className='my-3'
+                            variant='success' 
+                            onClick={() => buildOrder(orderItems)}
+                            >Save Order Items</Button>
+                    </Col>
+                    <Col>
+                        <Button 
+                            className='my-3 float-end' 
+                            type='submit'
+                            disabled={orders.length === 0}
+                            >Create Workorder</Button>
                     </Col>
                 </Row>
             </Form>
         
-        <h1>Select Products For Workorder</h1>
+        <h2>Select Products</h2>
         <Table striped bordered hover responsive className='table-md'>
             <thead>
                 <tr>
@@ -228,7 +220,10 @@ const WorkorderCreateScreen = () => {
                         <td>{product.brand}</td>
                         <td>{product.category}</td>
                         <td>
-                            <Button onClick={() => dispatch(addToOrder(product._id))}>Add</Button>
+                            <Button 
+                                variant='primary'
+                                onClick={() => dispatch(addToOrder(product._id))}
+                            >Add</Button>
                         </td>
                     </tr>
                 ))}

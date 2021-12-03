@@ -35,7 +35,7 @@ const WorkorderDetailsScreen = () => {
                 <ListGroup.Item>
                     <Row>
                         <Col><h4>Rush:</h4></Col>
-                        <Col><h5>{workorder.rush}</h5></Col>
+                        <Col><h5>{workorder.rush === true ? 'Yes' : 'No'}</h5></Col>
                         <Col><h4>Order Date:</h4></Col>
                         <Col><h5>{workorder.orderDate}</h5></Col>
                         <Col><h4>Due Date:</h4></Col>
@@ -46,11 +46,11 @@ const WorkorderDetailsScreen = () => {
                 <ListGroup.Item>
                     <Row>
                         <Col><h4>Customer:</h4></Col>
-                        <Col><h5>{workorder.customer && workorder.customer.name}</h5></Col>
+                        <Col><h5>{workorder.name}</h5></Col>
                         <Col><h4>Email:</h4></Col>
-                        <Col><h5>{workorder.customer && workorder.customer.email}</h5></Col>
+                        <Col><h5>{workorder.email}</h5></Col>
                         <Col><h4>Phone:</h4></Col>
-                        <Col><h5>{workorder.customer && workorder.customer.phone}</h5></Col>
+                        <Col><h5>{workorder.phone}</h5></Col>
                     </Row>
                 </ListGroup.Item>
             </ListGroup>
