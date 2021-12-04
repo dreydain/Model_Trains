@@ -66,6 +66,7 @@ const updateUser = asyncHandler(async (req, res) => {
         user.address = req.body.address || user.address
         user.jobTitle = req.body.jobTitle || user.jobTitle
         user.wage = req.body.wage || user.wage
+        user.startDate = req.body.startDate || user.startDate
         user.endDate = req.body.endDate || user.endDate
         if(req.body.password) {
             user.password = req.body.password
@@ -83,6 +84,7 @@ const updateUser = asyncHandler(async (req, res) => {
             address: updatedUser.address,
             jobTitle: updatedUser.jobTitle,
             wage: updatedUser.wage,
+            startDate: updatedUser.startDate,
             endDate: updatedUser.endDate
         })
 

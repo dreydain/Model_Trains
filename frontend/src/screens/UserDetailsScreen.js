@@ -32,7 +32,7 @@ const UserDetailsScreen = () => {
             <Row>
                 <Row>
                     <Col>
-                        <Button className='my-2' variant='light'>Go Back</Button>
+                        <Button className='my-2' variant='light' href='/userlist'>Go Back</Button>
                     </Col>
                 </Row>
                 <Col md={6}>
@@ -67,7 +67,7 @@ const UserDetailsScreen = () => {
                         </Button>
                     </Col>
                     <Col>
-                        <Button className='my-5 float-end' variant='danger' onClick={() => deleteHandler(user._id)}>Terminate</Button>
+                        <Button className='my-5 float-end' variant='danger' onClick={() => deleteHandler(user._id)}>Delete</Button>
                     </Col>
                 </Row>
             </Row>

@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Button, Table, Row, Col} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {listUsers, deleteUser} from '../actions/userActions'
 import {Link} from 'react-router-dom'
+import moment from 'moment'
 
 const UserListScreen = () => {
     
@@ -20,10 +21,9 @@ const UserListScreen = () => {
 
     const deleteHandler = (id) => {
         dispatch(deleteUser(id))
-        if(window.confirm('Are you sure?')) {
-            dispatch(deleteUser(id)) 
-        }
+        
     }
+
 
     
     return (
@@ -55,9 +55,9 @@ const UserListScreen = () => {
                             <td><Link to={`/users/${user._id}`}>{user.firstName}</Link></td>
                             <td>{user.lastName}</td>
                             <td>{user.jobTitle}</td>
-                            <td>Employment Dates</td>
+                            <td>{moment(user.startDate).format('MM/DD/YY')} ~ {!user.endDate ? 'Present' : moment(user.endDate).format('MM/DD/YY')}</td>
                             <td>{user.wage}</td>
-                            <td><Link to={`/users/${user._id}/edit`}>Edit</Link> | <Button variant='danger'onClick={() => deleteHandler(user._id)}>Terminate</Button></td>
+                            <td><Link to={`/users/${user._id}/edit`}>Edit</Link> | <Button size='sm' variant='danger'onClick={() => deleteHandler(user._id)}>Delete</Button></td>
                         </tr>
                     ))}
                 </tbody>

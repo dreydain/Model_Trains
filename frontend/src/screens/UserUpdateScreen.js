@@ -16,6 +16,8 @@ const UserUpdateScreen = () => {
     const [address, setAddress] = useState('')
     const [jobTitle, setJobTitle] = useState('')
     const [wage, setWage] = useState('')
+    const [startDate, setStartDate] = useState(Date)
+    const [endDate, setEndDate] = useState(Date)
     
     let navigate = useNavigate()
     const dispatch = useDispatch()
@@ -31,7 +33,6 @@ const UserUpdateScreen = () => {
     useEffect(() => {
         
         if(!user.firstName || !user._id || success) {
-            dispatch({type: USER_UPDATE_RESET})
             dispatch(getUserDetails(id))
     
         } else {
@@ -42,6 +43,8 @@ const UserUpdateScreen = () => {
             setAddress(user.address)
             setJobTitle(user.jobTitle)
             setWage(user.wage)
+            setStartDate(user.startDate)
+            setEndDate(user.endDate)
         }
         
     }, [dispatch, id, success, user])
@@ -49,7 +52,8 @@ const UserUpdateScreen = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(updateUser({id: user._id, firstName, lastName, email, phone, address, jobTitle, wage}))
+        dispatch(updateUser({id: user._id, firstName, lastName, email, phone, address, jobTitle, wage, startDate, endDate}))
+        dispatch({type: USER_UPDATE_RESET})
         navigate('/userlist')
     }
 
@@ -126,6 +130,26 @@ const UserUpdateScreen = () => {
                         placeholder='Enter Wage' 
                         value={wage}
                         onChange={(e) => setWage(e.target.value)}
+                    ></Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId='startDate'>
+                    <Form.Label>Start Date</Form.Label>
+                    <Form.Control 
+                        type='date' 
+                        placeholder='Select Start Date' 
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                    ></Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId='endDate'>
+                    <Form.Label>End Date</Form.Label>
+                    <Form.Control 
+                        type='date' 
+                        placeholder='Select End Date' 
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
 

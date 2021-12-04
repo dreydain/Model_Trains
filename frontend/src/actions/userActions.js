@@ -20,6 +20,7 @@ import {
     USER_DELETE_REQUEST,
     USER_DELETE_SUCCESS,    
     USER_DELETE_FAIL,
+    USER_DETAILS_RESET,
 } from "../constants/userConstants"
 
 export const listUsers = () => async (dispatch) => {
@@ -106,6 +107,8 @@ export const updateUser = (user) => async (dispatch) => {
             type: USER_UPDATE_SUCCESS,
             payload: data
         })
+
+        dispatch({ type: USER_DETAILS_RESET })
 
     } catch (error) {
         const message =
