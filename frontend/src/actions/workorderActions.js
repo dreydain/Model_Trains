@@ -11,6 +11,12 @@ import {
     WORKORDER_CREATE_REQUEST,
     WORKORDER_CREATE_SUCCESS,
     WORKORDER_CREATE_FAIL,
+
+    WORKORDER_UPDATE_REQUEST,
+    WORKORDER_UPDATE_SUCCESS,
+    WORKORDER_UPDATE_FAIL,
+    WORKORDER_DETAILS_RESET,
+
 } from "../constants/workorderConstants"
 
 import {ORDER_RESET} from "../constants/orderConstants"
@@ -89,6 +95,34 @@ export const createWorkorder = (number, rush, orderDate, dueDate, name, email, p
                     : error.message
         })
         
+    }
+}
+
+export const updateWorkorder = (workorder) => async (dispatch) => {
+    try {
+        dispatch({
+            type: WORKORDER_UPDATE_REQUEST
+        })
+
+        const {data} = axios.put(`/api/workorders/${workorder.id}`, workorder)
+        
+
+        dispatch({
+            type: WORKORDER_UPDATE_SUCCESS,
+            payload: data
+        })
+
+        dispatch({ type: WORKORDER_DETAILS_RESET })
+
+    } catch (error) {
+        const message =
+        error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        dispatch({
+            type: WORKORDER_UPDATE_FAIL,
+            payload: message,
+        })
     }
 }
 

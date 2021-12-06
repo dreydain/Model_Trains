@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import WorkOrderListScreen from './screens/WorkOrderListScreen'
 import WorkorderDetailsScreen from './screens/WorkorderDetailsScreen'
 import WorkorderCreateScreen from './screens/WorkorderCreateScreen'
+import WorkorderUpdateScreen from './screens/WorkorderUpdateScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductDetailsScreen from './screens/ProductDetailsScreen'
 import ProductUpdateScreen from './screens/ProductUpdateScreen'
@@ -27,6 +28,8 @@ function App() {
             {/* <Route path='/workorders/new' element={<OrderBuildScreen/>}/> */}
             <Route path='/workorders/:id' element={<WorkorderDetailsScreen/>}/>
             <Route path='/workorders/new' element={<WorkorderCreateScreen/>}/>
+            <Route path='/workorders/:id/edit' element={<WorkorderUpdateScreen/>}/>
+            
             <Route path='/productlist' element={<ProductListScreen/>}/>
             <Route path='/products/:id' element={<ProductDetailsScreen/>}/>
             <Route path='/products/:id/edit' element={<ProductUpdateScreen/>}/>
