@@ -30,7 +30,7 @@ function App() {
             <Route path='/workorders/:id' element={<WorkorderDetailsScreen/>}/>
             <Route path='/workorders/new' element={<WorkorderCreateScreen/>}/>
             <Route path='/workorders/:id/edit' element={<WorkorderUpdateScreen/>}/>
-            <Route path='workorders/:id/editOrder' element={<OrderEditScreen/>}/>
+            <Route path='workorders/:orderID/editOrder' element={<OrderEditScreen/>}/>
             
             <Route path='/productlist' element={<ProductListScreen/>}/>
             <Route path='/products/:id' element={<ProductDetailsScreen/>}/>
