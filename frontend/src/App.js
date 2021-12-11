@@ -15,6 +15,7 @@ import UserListScreen from './screens/UserListScreen'
 import UserRegisterScreen from './screens/UserRegisterScreen'
 import UserDetailsScreen from './screens/UserDetailsScreen'
 import UserUpdateScreen from './screens/UserUpdateScreen'
+import OrderEditScreen from './screens/OrderEditScreen'
 //import OrderBuildScreen from './screens/OrderBuildScreen'
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path='/workorders/:id' element={<WorkorderDetailsScreen/>}/>
             <Route path='/workorders/new' element={<WorkorderCreateScreen/>}/>
             <Route path='/workorders/:id/edit' element={<WorkorderUpdateScreen/>}/>
+            <Route path='workorders/:id/editOrder' element={<OrderEditScreen/>}/>
             
             <Route path='/productlist' element={<ProductListScreen/>}/>
             <Route path='/products/:id' element={<ProductDetailsScreen/>}/>

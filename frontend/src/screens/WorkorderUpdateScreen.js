@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import {Table, Col, Row, Button, ListGroup, Image, Form, Card} from 'react-bootstrap'
-import { useNavigate, useParams } from 'react-router-dom'
+import {Col, Row, Button, Table, Form, Card} from 'react-bootstrap'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateWorkorder, getWorkorderDetails } from '../actions/workorderActions'
-import {addToOrder, removeFromOrder} from '../actions/orderActions'
 import Message from '../components/Message'
 import {Link} from 'react-router-dom'
 import { WORKORDER_UPDATE_RESET } from '../constants/workorderConstants'
@@ -19,15 +18,17 @@ const WorkorderUpdateScreen = () => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [orders, setOrders] = useState([])
-    const [mold, setMold] = useState('')
-    const [cast, setCast] = useState('')
-    const [paint, setPaint] = useState('')
-    const [complete, setComplete] = useState('')
+    // const [mold, setMold] = useState('')
+    // const [cast, setCast] = useState('')
+    // const [paint, setPaint] = useState('')
+    // const [complete, setComplete] = useState('')
 
 
     const dispatch = useDispatch()
     const {id} = useParams();
     let navigate = useNavigate()
+
+    
 
     const workorderUpdate = useSelector((state) => state.workorderUpdate)
     const {success} = workorderUpdate
@@ -35,15 +36,12 @@ const WorkorderUpdateScreen = () => {
     const workorderDetails = useSelector((state) => state.workorderDetails)
     const {workorder} = workorderDetails
 
-    // const buildOrder = (e) => {
-    //     setOrders([...orderItems.map((item) => {
-    //         return {
-    //             product: item.product,
-    //             quantity: item.quantity
-    //         }
-    //     })])
-    // }
+    // const updateOrder = orders.slice()
+    // console.log(updateOrder)
 
+    // const buildOrder = (e) => {
+    //     setOrders(updateOrder)
+    // }
     
 
     useEffect(() => {
@@ -155,70 +153,40 @@ const WorkorderUpdateScreen = () => {
                     </Row>
                 </Card>
                 <Row>
-                    <Col className='my-3'>
+                    <Col className='my-2'>
                         <h3>Orders</h3>
                     </Col>
-                </Row>
-                {workorder.orders.length === 0
-                    ? <Message>There are no orders in this workorder</Message>
-                    : <ListGroup>
-                        {workorder.orders.map((order) => (
-                            <ListGroup.Item key={order.product}>
-                                <Row>
-                                    <Col md={4}>
-                                        <Link to={`/product/${order.product}`}>{order.product}</Link>
-                                    </Col>
-                                    <Col md={2}>
-                                        <h6> Qty: {order.quantity}</h6>
-                                    </Col>
-                                    <Form.Group controlId='mold'>
-                                        <Form.Label>Molding</Form.Label>
-                                        <Form.Control 
-                                            type='number' 
-                                            placeholder='Enter qty in mold' 
-                                            value={mold}
-                                            onChange={(e) => setMold(e.target.value)}
-                                        ></Form.Control>
-                                    </Form.Group>
-                                    <Form.Group controlId='cast'>
-                                        <Form.Label>Casting</Form.Label>
-                                        <Form.Control 
-                                            type='number' 
-                                            placeholder='Enter qty in cast' 
-                                            value={cast}
-                                            onChange={(e) => setCast(e.target.value)}
-                                        ></Form.Control>
-                                    </Form.Group>
-                                    <Form.Group controlId='paint'>
-                                        <Form.Label>Painting</Form.Label>
-                                        <Form.Control 
-                                            type='number' 
-                                            placeholder='Enter qty in paint' 
-                                            value={paint}
-                                            onChange={(e) => setPaint(e.target.value)}
-                                        ></Form.Control>
-                                    </Form.Group>
-                                    <Form.Group controlId='complete'>
-                                        <Form.Label>Completed</Form.Label>
-                                        <Form.Control 
-                                            type='number' 
-                                            placeholder='Enter qty in completed' 
-                                            value={complete}
-                                            onChange={(e) => setComplete(e.target.value)}
-                                        ></Form.Control>
-                                    </Form.Group>
-                                </Row>
-                            </ListGroup.Item>
-                        ))}
-                    </ListGroup>
-                }
-                
-                <Row>
+                    <Table striped bordered hover responsive className='table-md my-2'>
+                        <thead>
+                            <tr>
+                                <th>Product #</th>
+                                <th>Quantity</th>
+                                <th>Mold</th>
+                                <th>Cast</th>
+                                <th>Paint</th>
+                                <th>Complete</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {workorder.orders.map((item, index) => (
+                                <tr key={index}>
+                                    <td>{item.product}</td>
+                                    <td>{item.quantity}</td>
+                                    <td>{item.mold}</td>
+                                    <td>{item.cast}</td>
+                                    <td>{item.paint}</td>
+                                    <td>{item.complete}</td>
+                                    <td><Button><Link className="button-link" to={`/workorders/${item._id}/editOrder`} state={{id: id}}>Edit</Link></Button></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
                     <Col>
                         <Button 
                             className='my-3 float-end' 
                             type='submit'
-                            >Create Workorder</Button>
+                        >Update Workorder</Button>
                     </Col>
                 </Row>
             </Form>
