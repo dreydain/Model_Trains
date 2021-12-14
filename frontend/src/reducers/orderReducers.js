@@ -3,6 +3,10 @@ import {
     ORDER_REMOVE_ITEM, 
     ORDER_RESET,
 
+    ORDER_UPDATE_REQUEST,
+    ORDER_UPDATE_SUCCESS,
+    ORDER_UPDATE_FAIL,
+
     // ORDER_LIST_REQUEST,
     // ORDER_LIST_SUCCESS,
     // ORDER_LIST_FAIL,
@@ -45,6 +49,21 @@ export const orderReducer = (state = {orderItems: []}, action) => {
                 return state
     }
 }
+
+export const orderUpdateReducer = (state = {order: {}}, action) => {
+    switch(action.type) {
+        case ORDER_UPDATE_REQUEST: 
+            return {loading: true}
+        case ORDER_UPDATE_SUCCESS:
+            return {loading: false, success: true}
+        case ORDER_UPDATE_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
 
 // export const orderListReducer = (state = {orders: []}, action) => {
 //     switch (action.type) {

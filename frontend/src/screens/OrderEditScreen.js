@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate, useParams, useLocation, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {Table, Row, Col, Button, Card, Form} from 'react-bootstrap'
-import {getWorkorderDetails} from '../actions/workorderActions'
+import {getWorkorderDetails, updateWorkorder} from '../actions/workorderActions'
+import {orderUpdate} from '../actions/orderActions'
 
 
 const OrderEditScreen = () => {
@@ -10,9 +11,18 @@ const OrderEditScreen = () => {
     const [quantity, setQuantity] = useState('')
     const [mold, setMold] = useState('')
     const [cast, setCast] = useState('')
-    const [aint, setPaint] = useState('')
+    const [paint, setPaint] = useState('')
     const [complete, setComplete] = useState('')
     const [order, setOrder] = useState({})
+    const [updatedOrder, setUpdatedOrder] = useState({
+        
+        quantity: quantity,
+        complete: complete,
+        mold: mold,
+        cast: cast,
+        paint: paint
+    })
+    
     
     const dispatch = useDispatch()
     const location = useLocation()
@@ -22,6 +32,9 @@ const OrderEditScreen = () => {
 
     const workorderDetails = useSelector(state => state.workorderDetails)
     const {workorder} = workorderDetails
+
+    // const orderUpdate = useSelector((state) => state.orderUpdate)
+    // const {success} = orderUpdate
 
     useEffect(() => {
         dispatch(getWorkorderDetails(id))
@@ -34,7 +47,13 @@ const OrderEditScreen = () => {
         
     }, [dispatch, id, orderID, workorder.orders])
 
-    
+    const submitHandler = (e) => {
+        e.preventDefault()
+        setUpdatedOrder({product: order.product, quantity, complete, mold, cast, paint})
+        
+        
+    }
+
 
 
 
@@ -42,14 +61,15 @@ const OrderEditScreen = () => {
         <>
             <h4>Order Id: {orderID}</h4>
             <Card className='p-3'>
-                <Form>
+                <Form onSubmit={submitHandler}>
                     <Row>
                         <Col>
                             <Form.Group className='mb-3' controlId='product'>
                                 <Form.Label>Product</Form.Label>
                                 <Form.Control 
                                     type='text'
-                                    value={order.product}  
+                                    value={order.product}
+                                    onChange={(e) => setProduct(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
                         </Col>
@@ -59,7 +79,9 @@ const OrderEditScreen = () => {
                                 <Form.Label>Quantity</Form.Label>
                                 <Form.Control 
                                     type='number'
-                                    value={order.quantity}  
+                                    placeholder={order.quantity}
+                                    value={quantity}
+                                    onChange={(e) => setQuantity(e.target.value)}  
                                 ></Form.Control>
                             </Form.Group>
                         </Col>
@@ -69,7 +91,9 @@ const OrderEditScreen = () => {
                                 <Form.Label>Complete</Form.Label>
                                 <Form.Control 
                                     type='number'
-                                    value={order.complete}  
+                                    placeholder={order.complete}
+                                    value={complete} 
+                                    onChange={(e) => setComplete(e.target.value)} 
                                 ></Form.Control>
                             </Form.Group>
                         </Col>
@@ -81,7 +105,9 @@ const OrderEditScreen = () => {
                                 <Form.Label>Mold</Form.Label>
                                 <Form.Control 
                                     type='number'
-                                    value={order.mold}  
+                                    placeholder={order.mold}
+                                    value={mold} 
+                                    onChange={(e) => setMold(e.target.value)}  
                                 ></Form.Control>
                             </Form.Group>
                         </Col>
@@ -91,7 +117,9 @@ const OrderEditScreen = () => {
                                 <Form.Label>Cast</Form.Label>
                                 <Form.Control 
                                     type='number'
-                                    value={order.cast}  
+                                    placeholder={order.cast}
+                                    value={cast} 
+                                    onChange={(e) => setCast(e.target.value)}  
                                 ></Form.Control>
                             </Form.Group>
                         </Col>
@@ -101,7 +129,9 @@ const OrderEditScreen = () => {
                                 <Form.Label>Paint</Form.Label>
                                 <Form.Control 
                                     type='number'
-                                    value={order.paint}  
+                                    placeholder={order.paint}
+                                    value={paint} 
+                                    onChange={(e) => setPaint(e.target.value)} 
                                 ></Form.Control>
                             </Form.Group>
                         </Col>

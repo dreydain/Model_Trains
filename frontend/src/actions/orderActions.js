@@ -3,6 +3,10 @@ import {
     ORDER_ADD_ITEM, 
     ORDER_REMOVE_ITEM,
 
+    ORDER_UPDATE_REQUEST,
+    ORDER_UPDATE_SUCCESS,
+    ORDER_UPDATE_FAIL,
+
     // ORDER_LIST_REQUEST,
     // ORDER_LIST_SUCCESS,
     // ORDER_LIST_FAIL,
@@ -40,6 +44,29 @@ export const removeFromOrder = (id) => (dispatch, getState) => {
     })
 
     localStorage.setItem('orderItems', JSON.stringify(getState().order.orderItems))
+}
+
+export const updateOrder = (order) => async (dispatch) => {
+    try {
+        dispatch({type: ORDER_UPDATE_REQUEST})
+
+        const {data} = axios.put(`/api/workorders/${order.id}/edit`, order)
+
+        dispatch({
+            type: ORDER_UPDATE_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        const message =
+        error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        dispatch({
+            type: ORDER_UPDATE_FAIL,
+            payload: message
+        })
+    }
 }
 
 // export const listOrders = () => async (dispatch) => {
