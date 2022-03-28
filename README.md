@@ -1,10 +1,12 @@
 <h1>Model Trains</h1>
 A business management tool, that helps users keep accurate stock counts on all products for multiple businesses.
 It also keeps track of the manufacturing process for individual product orders.
-When an order is recieved, users can create a workorder to fulfill customer orders.
-When a workorder is created, each product's order quantity is deducted from the products total stock.
-Workorders will reflect how much of the quantity is available to ship, and how many need to be made. 
-At the bottom of the work order is manufacturing tracker for each product in the order, and can be updated by employees.
+<ul>
+  <li>When an order is recieved, users can create a workorder to fulfill customer orders.</li>
+  <li>When a workorder is created, each product's order quantity is deducted from the products total stock.</li>
+  <li>Workorders will reflect how much of the quantity is available to ship, and how many need to be made.</li>
+  <li>At the bottom of the work order is manufacturing tracker for each product in the order, and can be updated by employees.</li>
+</ul>
 
 <h2>Motivation</h2>
 I needed a solo capstone project for Coding Dojo, and my Aunt and Uncle needed a tool to help them better manage product for their Model Train Businesses.
@@ -24,21 +26,27 @@ I needed a solo capstone project for Coding Dojo, and my Aunt and Uncle needed a
 
 <h2>Tech/framework used</h2>
 <h3>Backend:</h3>
-MongoDB
-Express
-Node
-Mongoose
+<ul>
+  <li>MongoDB</li>
+  <li>Express</li>
+  <li>Node</li>
+  <li>Mongoose</li>
+</ul>
 
 <h3>Frontend:</h3>
-React
-React-Router
-Bootstrap/Boostswatch
-Redux
+<ul>
+  <li>React</li>
+  <li>React-Router</li>
+  <li>Bootstrap/Boostswatch</li>
+  <li>Redux</li>
+</ul>
 
 <h2>Installation</h2>
-Fork Repository
+<ul>
+  <li>Fork Repository</li>
 In Model_Trains root directory/folder:
-npm install // installs all dependencies
-npm data:import // imports starter data, users and products
-npm run dev // starts both client and server
+  <li>npm install // installs all dependencies</li>
+  <li>npm data:import // imports starter data, users and products</li>
+  <li>npm run dev // starts both client and server</li>
+</ul>
 
